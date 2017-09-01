@@ -1,5 +1,6 @@
 ---
 title: "Luyu Homepage"
+head: "Luyu Homepage"
 
 ---
 
