@@ -1,7 +1,6 @@
 ---
-title: "Luyu Homepage"
-head: "Luyu Homepage"
+# Feel free to add content and custom Front Matter to this file.
+# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
+layout: home
 ---
-
-### Welcome! I am Luyu Huang, this is my tech blog.

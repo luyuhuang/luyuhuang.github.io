@@ -1,0 +1,31 @@
+# configuration
+
+title: Luyu Huang's tech blog
+email: luyu_huang@foxmail.com
+description: >-
+  I'm a software engineer and game developer. Here I would like share my learning, insights and growth.
+
+baseurl: "" 
+url: ""
+
+author: Luyu Huang
+github_username:  luyuhuang
+
+theme: minima
+minima:
+  date_format: "%Y-%m-%d"
+
+kramdown:
+  math_engine: null
+
+header_pates:
+  - about.md
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+show_excerpts: false
