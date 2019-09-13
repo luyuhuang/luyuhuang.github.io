@@ -44,17 +44,17 @@ category: tools
     </head>
     ```
 
-大功告成! 在 \\$ \\$ 之间的 LaTex 会变成行内公式就像这样: `$e^{\pi i}+1=0$` 转换成 $e^{\pi i}+1=0$ ; 新起一段并且在 \\$\\$ \\$\\$ 之间的 LaTeX 会变成段落公式就像这样:
+大功告成! 在 \\$ \\$ 之间的 LaTex 会变成行内公式就像这样: `$\mathrm{e}^{\pi\mathrm{i}}+1=0$` 转换成 $\mathrm{e}^{\pi\mathrm{i}}+1=0$ ; 新起一段并且在 \\$\\$ \\$\\$ 之间的 LaTeX 会变成段落公式就像这样:
 ```
 
 $$ 
-H_n=1+\frac{1}{2}+\frac{1}{3}+...+\frac{1}{n}=\sum_{i=1}^{n}\frac{1}{n}=O(\log n)
+H_n=1+\frac{1}{2}+\frac{1}{3}+...+\frac{1}{n}=\sum_{i=1}^{n}\frac{1}{i}=O(\log n)
 $$
 ```
 转换成
 
 $$
-H_n=1+\frac{1}{2}+\frac{1}{3}+...+\frac{1}{n}=\sum_{i=1}^{n}\frac{1}{n}=O(\log n)
+H_n=1+\frac{1}{2}+\frac{1}{3}+...+\frac{1}{n}=\sum_{i=1}^{n}\frac{1}{i}=O(\log n)
 $$
 
 参考资料: [How to use MathJax in Jekyll generated Github pages
