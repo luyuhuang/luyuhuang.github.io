@@ -29,3 +29,6 @@ defaults:
       layout: "post"
 
 show_excerpts: false
+
+exclude:
+  - README.md
