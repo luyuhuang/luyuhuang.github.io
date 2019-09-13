@@ -28,7 +28,7 @@ category: tools
         }
     });
     </script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
     ```
 3. 把 mathjax include 到 html 的 `<head>` 标签中：
@@ -56,3 +56,6 @@ $$
 $$
 H_n=1+\frac{1}{2}+\frac{1}{3}+...+\frac{1}{n}=\sum_{i=1}^{n}\frac{1}{n}=O(\log n)
 $$
+
+参考资料: [How to use MathJax in Jekyll generated Github pages
+](https://haixing-hu.github.io/programming/2013/09/20/how-to-use-mathjax-in-jekyll-generated-github-pages/)
