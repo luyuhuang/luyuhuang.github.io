@@ -3,21 +3,40 @@ layout: default
 ---
 
 <div class="home">
+  {% comment %}
   {%- if page.title -%}
     <h1 class="page-heading">{{ page.title }}</h1>
   {%- endif -%}
+  {% endcomment %}
 
   {{ content }}
 
   {%- if site.posts.size > 0 -%}
-    <!-- <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2> -->
+    <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
     <ul class="post-list">
       {%- for post in site.posts -%}
+
+      {% if page.filter %}
+        {% assign show = true %}
+        {% for tuple in page.filter %}
+          {% assign key = tuple[0] %}
+          {% if post[key] != tuple[1] %}
+            {% assign show = false %}
+          {% endif %}
+        {% endfor %}
+        {% unless show %}
+          {% continue %}
+        {% endunless %}
+      {% endif %}
+
       <li>
         {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
         <span class="post-meta">{{ post.date | date: date_format }}</span>
         <h3>
           <a class="post-link" href="{{ post.url | relative_url }}">
+            {% if post.featured %}
+             <img src="/assets/star.ico" width="20"/>
+            {% endif %}
             {{ post.title | escape }}
           </a>
         </h3>

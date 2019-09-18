@@ -5,7 +5,7 @@ email: luyu_huang@foxmail.com
 description: >-
   I'm a software engineer and game developer. Here I would like share my learning, insights and growth.
 
-baseurl: "" 
+baseurl: ""
 url: ""
 
 author: Luyu Huang
@@ -18,7 +18,8 @@ minima:
 kramdown:
   math_engine: null
 
-header_pates:
+header_pages:
+  - featured.md
   - about.md
 
 defaults:
