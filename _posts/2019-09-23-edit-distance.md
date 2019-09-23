@@ -35,9 +35,9 @@ category: algorithms
 由此, 我们可得递推式:
 
 $$
-\left\{\begin{matrix}
-\min(dp[i-1][j]+1,dp[i][j-1]+1,dp[i-1][j-1]) & word_1[-1]=word_2[-1] \\ 
-\min(dp[i-1][j]+1,dp[i][j-1]+1,dp[i-1][j-1] + 1) & word_1[-1]\ne word_2[-1]
+dp[i][j]=\left\{\begin{matrix}
+\min(dp[i-1][j]+1,dp[i][j-1]+1,dp[i-1][j-1]) & word_1[i-1]=word_2[j-1] \\ 
+\min(dp[i-1][j]+1,dp[i][j-1]+1,dp[i-1][j-1] + 1) & word_1[i-1]\ne word_2[j-1]
 \end{matrix}\right.
 $$
 
@@ -60,7 +60,7 @@ for j in xrange(n + 1):
     dp[0][j] = j
 ```
 
-**第二部:安排迭代顺序**. 我们发现, `dp[i][j]` 依赖于 `dp[i-1][j]`, `dp[i][j-1]` 和 `dp[i-1][j-1]`. 如图所示:
+**第二步:安排迭代顺序**. 我们发现, `dp[i][j]` 依赖于 `dp[i-1][j]`, `dp[i][j-1]` 和 `dp[i-1][j-1]`. 如图所示:
 
 ![iter](/assets/images/edit-distance_1.png){:width="300"}
 
