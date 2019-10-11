@@ -5,7 +5,7 @@ category: linux
 Linux 提供了一系列系统调用使我们能在进程间传递文件描述符. 这里的 "传递文件描述符" 不是简单地传递文件描述符这个32位整数, 而是真正地把这个文件句柄传递给目标进程, 使目标进程可以对文件执行读写操作. 现在假设 进程B 要给 进程A 发送文件描述符, 我们来看具体做法.
 
 ### 1. UNIX domain socket
-要想传递文件描述符, 首先需要建立进程间通信. 这里我们需要用到 UNIX domain socket. UNIX domain socket 是一种进程间通信的方式, 它和普通的 socket 类似, 不同的是不需要用到 ip 地址, 而是使用一个 socket 文件. 首先我们让进程A先创建一个 socket:
+要想传递文件描述符, 首先需要建立进程间通信. 这里我们需要用到 UNIX domain socket. UNIX domain socket 是一种进程间通信的方式, 它和普通的 socket 类似, 不同的是不需要用到 ip 地址, 而是使用一个 socket 文件. 我们要利用它发送控制信息, 从而传递文件描述符. 首先我们让进程A先创建一个 socket:
 
 ```c
 /*code of process A*/
@@ -28,7 +28,7 @@ if (bind(socket_fd, (struct sockaddr*)&un, sizeof(un)) < 0) {
 }
 ```
 
-注意这里的地址就不再是一个 ip 地址了, 而是一个文件路径. 我们创建一个文件名为 `process_a` 的文件, 然后指定地址为 `process_a`. 然后调用 `bind` 绑定地址.
+注意这里的地址就不再是一个 ip 地址了, 而是一个文件路径. 在这里我们指定地址为 `process_a`, 然后调用 `bind` 绑定地址, 这时就会创建一个名为 `process_a` 的 socket 文件.
 
 这样一来, 其他的进程就可以通过 `process_a` 这样一个特殊的地址跟这个进程发送消息了. 就跟发送 UDP 消息一样, 不同的是使用 `struct sockaddr_un` 来定义地址, 而不是 `struct sockaddr_in` 或 `struct sockaddr_in6`. 除此之外, 重要的是, 其他进程还可以通过发送控制信息向这个进程传递文件描述符.
 
@@ -64,9 +64,9 @@ struct msghdr {
 };
 ```
 
-1. `msg_name` 目标地址. 这个是可选的, 如果协议是面向连接的, 就不需要指定地址; 否则就需要指定地址. 这就像 `send` 和 `sendto` 一样.
-2. `msg_iov` 要发送的数据. 这是一个数组, 数组的由 `msg_iovlen` 指定, 数组的元素是一个 `struct iovec` 结构体, 这个结构体指定一段连续数据的起始地址(`iov_base`)和长度(`iov_len`). 也就是说, 它可以发送多段连续数据; 或者说, 可以发送一段不连续的数据.
-3. `msg_control` 控制信息. 这就是我们今天的主角. 我们不能直接设置它, 必须使用一系列的宏来设置它.
+- `msg_name` 目标地址. 这个是可选的, 如果协议是面向连接的, 就不需要指定地址; 否则就需要指定地址. 这就类似于 `send()` 和 `sendto()`.
+- `msg_iov` 要发送的数据. 这是一个数组, 数组的由 `msg_iovlen` 指定, 数组的元素是一个 `struct iovec` 结构体, 这个结构体指定一段连续数据的起始地址(`iov_base`)和长度(`iov_len`). 也就是说, 它可以发送多段连续数据; 或者说, 可以发送一段不连续的数据.
+- `msg_control` 控制信息. 这就是我们今天的主角. 我们不能直接设置它, 必须使用一系列的宏来设置它.
 
 `msg_control` 指向一个由 `struct cmsghdr` 结构体及其附加数据构成的序列. `struct cmsghdr` 的定义如下:
 
