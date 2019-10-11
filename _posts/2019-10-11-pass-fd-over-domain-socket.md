@@ -65,7 +65,7 @@ struct msghdr {
 ```
 
 - `msg_name` 目标地址. 这个是可选的, 如果协议是面向连接的, 就不需要指定地址; 否则就需要指定地址. 这就类似于 `send()` 和 `sendto()`.
-- `msg_iov` 要发送的数据. 这是一个数组, 数组的由 `msg_iovlen` 指定, 数组的元素是一个 `struct iovec` 结构体, 这个结构体指定一段连续数据的起始地址(`iov_base`)和长度(`iov_len`). 也就是说, 它可以发送多段连续数据; 或者说, 可以发送一段不连续的数据.
+- `msg_iov` 要发送的数据. 这是一个数组, 数组的长度由 `msg_iovlen` 指定, 数组的元素是一个 `struct iovec` 结构体, 这个结构体指定一段连续数据的起始地址(`iov_base`)和长度(`iov_len`). 也就是说, 它可以发送多段连续数据; 或者说, 可以发送一段不连续的数据.
 - `msg_control` 控制信息. 这就是我们今天的主角. 我们不能直接设置它, 必须使用一系列的宏来设置它.
 
 `msg_control` 指向一个由 `struct cmsghdr` 结构体及其附加数据构成的序列. `struct cmsghdr` 的定义如下:
@@ -80,7 +80,7 @@ struct cmsghdr {
 };
 ```
 
-`struct cmsghdr` 实际上定义的是数据的头部, 后面应该紧跟着一个 `unsigned char` 数组, 存放控制信息的实际数据. 也就是大家常说的 "变长结构体". `msg_control` 便是指向一个由这样的变长结构体够成的序列. 内存结构如下图所示:
+`struct cmsghdr` 实际上定义的是数据的头部, 后面应该紧跟着一个 `unsigned char` 数组, 存放控制信息的实际数据. 也就是大家常说的 "变长结构体". `msg_control` 便是指向一个由这样的变长结构体构成的序列. 内存结构如下图所示:
 
 ![control data](/assets/images/pass-fd-over-domain-socket_1.gif)
 
@@ -100,7 +100,7 @@ unsigned char *CMSG_DATA(struct cmsghdr *cmsg);
 - `CMSG_LEN()` 传入控制信息的实际数据的长度, 返回变长结构体的长度
 - `CMSG_DATA()` 返回存放控制信息的实际数据的首地址.
 
-> 需要注意 `CMSG_SPACE()` 和 `CMSG_LEN()` 的区别: 前置包含 padding 的长度, 是实际占用的空间; 后者则不包含 padding 的长度, 用于赋值给 `cmsg_len`.
+> 需要注意 `CMSG_SPACE()` 和 `CMSG_LEN()` 的区别: 前者包含 padding 的长度, 是实际占用的空间; 后者则不包含 padding 的长度, 用于赋值给 `cmsg_len`.
 
 接下来我们来让进程B传递文件描述符给进程A. 首先设置进程A的地址, 也就是 "process_a":
 
