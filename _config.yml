@@ -20,6 +20,7 @@ kramdown:
 
 header_pages:
   - featured.md
+  - categories.html
   - about.md
 
 defaults:

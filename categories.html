@@ -1,0 +1,21 @@
+---
+layout: default
+title: Categories
+permalink: /categories/
+---
+<h2 class="post-list-heading">Categories</h2>
+
+{% assign categories = site.categories | sort %}
+{% for category in categories %}
+  <h3><a name="{{ category[0] }}"></a>{{ category[0] }}({{ category[1] | size }})</h3>
+  <ul style="list-style: none; margin-left: 15px">
+    {% for post in category[1] %}
+      <li><a href="{{ post.url }}">
+        {% if post.featured %}
+          <img src="/assets/star.ico" width="16"/>
+        {% endif %}
+        {{ post.title }}
+      </a></li>
+    {% endfor %}
+  </ul>
+{% endfor %}
