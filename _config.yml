@@ -6,9 +6,6 @@ rss: rss
 description: >-
   I'm a software engineer and game developer. Here I would like share my learning, insights and growth.
 
-baseurl: ""
-url: ""
-
 author: Luyu Huang
 github_username:  luyuhuang
 
