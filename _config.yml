@@ -2,6 +2,7 @@
 
 title: Luyu Huang's tech blog
 email: luyu_huang@foxmail.com
+rss: rss
 description: >-
   I'm a software engineer and game developer. Here I would like share my learning, insights and growth.
 
@@ -34,3 +35,9 @@ show_excerpts: false
 
 exclude:
   - README.md
+  - Gemfile
+  - Gemfile.lock
+
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed
