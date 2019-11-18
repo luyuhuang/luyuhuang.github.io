@@ -15,6 +15,7 @@ minima:
 
 kramdown:
   math_engine: null
+  smart_quotes: ["apos", "apos", "quot", "quot"]
 
 header_pages:
   - featured.md
