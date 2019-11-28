@@ -41,7 +41,7 @@ layout: default
           </a>
         </h3>
         {%- if site.show_excerpts -%}
-          {{ post.excerpt }}
+          {{ post.content | strip_html | truncate: 200 }}
         {%- endif -%}
       </li>
       {%- endfor -%}
