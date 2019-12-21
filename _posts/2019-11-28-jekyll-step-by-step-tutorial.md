@@ -30,7 +30,7 @@ bundle init
 现在打开 `Gemfile` 并且在其中加入 Jekyll 的依赖项:
 
 ```ruby
-gem "jekyll
+gem "jekyll"
 ```
 
 最后执行 `bundle` 命令来为你的项目安装 Jekyll.
