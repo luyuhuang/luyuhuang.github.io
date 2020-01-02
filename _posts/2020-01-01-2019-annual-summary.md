@@ -2,13 +2,13 @@
 title: 2019 Annual Summary
 category: essays
 ---
-On September 15, 2017, the first day I joined the company, I told myself that I joined a good company which has a good treatment but I'm not feel happy at all. I had a plenty of worry and confusion at that moment because I didn't know my direction.
+On September 15, 2017, the first day I joined the company, I told myself that I joined a good company which has a good treatment but I was not feeling happy at all. I had plenty of worry and confusion at that moment because I didn't know my direction.
 
-All I can do is working hard and learn as much as possible.
+All I can do is working hard and learning as much as possible.
 
 At the beginning of 2019, I told myself that 2019 is crucial for me. I must do something that will allow me to seize the opportunity that gives me a clear direction.
 
-Time flies and many things happened in 2019. Maybe it didn't meet my expectations, but fortunately I don't feel regret.
+Time flies and many events happened in 2019. Maybe it didn't meet my expectations, but fortunately I didn't feel regret.
 
 Today is January 1, 2020, it's time to make a summary.
 
@@ -44,7 +44,7 @@ I kept remembering words every day and completed daily plan every day except Jun
 
 ![baicizhan](/assets/images/2019-annual-summary_1.jpg){:width="400"}
 
-I have been remembering words for 605 days. I'm not good at language learning and I used to hate English. Nevertheless, for programmers, English is essential, which is a basic skill. I have overcome many difficulties and now I can read English articles more easily. In the future I hope I can hold on and improve writing and speaking skills.
+I have been remembering words for 605 days. I'm not good at language learning and I used to hate English. Nevertheless, for programmers, English is essential and it's a basic skill. I have overcome many difficulties and now I can read English articles more easily. In the future I hope I can hold on and improve writing and speaking skills.
 
 ## Technology
 
@@ -61,7 +61,7 @@ I have been remembering words for 605 days. I'm not good at language learning an
 
     I hope it'll be full of green spots in 2020.
 
-- I read a part of Lua source code following [this guide](https://github.com/lichuang/Lua-Source-Internal). I have understood some of these principles.
+- I read part of Lua source code following [this guide](https://github.com/lichuang/Lua-Source-Internal). I have understood some of these principles.
 
 ## Reading
 
