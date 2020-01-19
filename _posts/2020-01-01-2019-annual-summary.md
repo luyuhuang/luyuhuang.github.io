@@ -78,7 +78,7 @@ The two books that impressed me most were *Notre-Dame de Paris* and *Journey Und
 
 ## Something Happy
 
-On November 9 I attended the *Risuani LIVE Beijing* concert and met Nitta Emi. This is my happiest day in years.
+On November 9 I attended the *LisAni! LIVE Beijing* concert and met Nitta Emi. This is my happiest day in years.
 
 ![concert](/assets/images/2019-annual-summary_4.jpg)
 
