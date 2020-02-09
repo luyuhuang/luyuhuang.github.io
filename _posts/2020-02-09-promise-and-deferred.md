@@ -9,13 +9,13 @@ featured: true
 
 ## 2. 从请求说起
 
-### 请求和相应
+### 请求和响应
 
-我们在进行网络编程的时候, 总是会用到**请求(request)**和**相应(response)**. 比如进程 A 需要传递一些数据给进程 B, 我们就可以说进程 A 给进程 B 发送了一个请求. 有的时候一个请求发送出去之后就不用关心后续了; 但是更多的时候, 我们关心目标进程对数据的处理结果, 并且希望对结果进行进一步的处理. 这个时候, 我们可以让目标进程收到发送的数据并且进行了相应的处理之后, 给源进程发送一个请求, 把处理结果传递给源进程. 我们把这一行为称为响应.
+我们在进行网络编程的时候, 总是会用到**请求(request)**和**响应(response)**. 比如进程 A 需要传递一些数据给进程 B, 我们就可以说进程 A 给进程 B 发送了一个请求. 有的时候一个请求发送出去之后就不用关心后续了; 但是更多的时候, 我们关心目标进程对数据的处理结果, 并且希望对结果进行进一步的处理. 这个时候, 我们可以让目标进程收到发送的数据并且进行了相应的处理之后, 给源进程发送一个请求, 把处理结果传递给源进程. 我们把这一行为称为响应.
 
 ### 会话
 
-仅有请求和相应是不够的. 考虑以下这种情况:
+仅有请求和响应是不够的. 考虑以下这种情况:
 
 ![session](/assets/images/promise-and-deferred_1.png)
 
@@ -85,7 +85,7 @@ function request_handler(request) {
 }
 ```
 
-我们无法将 `res` 作为 `request_handler` 的返回值返回给 `on_receive_message`, 也就无法传递请求的相应. 为了解决这个问题, 我们可以做一些改造:
+我们无法将 `res` 作为 `request_handler` 的返回值返回给 `on_receive_message`, 也就无法传递请求的响应. 为了解决这个问题, 我们可以做一些改造:
 
 ```js
 function on_receive_message(remote_process_handle, message) {
@@ -109,7 +109,7 @@ function request_handler(request, cb) {
 }
 ```
 
-现在不再由返回值传递响应, 而是增加一个参数传递回调函数, 然后通过调用回调函数传递响应. 这样就解决了这个问题
+现在不再由返回值传递响应, 而是增加一个参数传递回调函数, 然后通过调用回调函数传递响应. 这样就解决了这个问题.
 
 然而这样做还是不太方便, 特别是涉及多层调用的时候, 就需要将回调函数通过参数层层传递. 此外在很多时候, 一次远程调用不一定会成功, 当错误发生的时候我们希望能够处理异常. 所以除了回调, 人们通常还会传入一个叫做 异常回调 的函数专门处理异常. 如果回调和异常回调都被层层传递, 这会使得代码难以维护, 包含远程调用的方法也难以封装成通用库.
 
@@ -138,7 +138,7 @@ promise.then((res) => {
 });
 ```
 
-使用一个函数构造 Promise 对象. 这个函数接收两个参数: 回调和异常回调. 我们说一个 Promise 对象意味着一个未完成的工作, 那么当工作完成的时候就调用回调函数, 当工作失败的时候调用异常回调函数. 构造完 Promise 对象之后, 调用 `Promise.then` 设置回调函数, 调用 `Promise.catch` 设置异常回调函数.
+使用一个函数构造 Promise 对象. 这个函数接收两个参数: 回调和异常回调. 我们说一个 Promise 对象意味着一个未完成的工作, 那么当工作完成的时候就调用回调函数, 当工作失败的时候调用异常回调函数. 构造完 Promise 对象之后, 调用 `Promise.prototype.then` 设置回调函数, 调用 `Promise.prototype.catch` 设置异常回调函数.
 
 我们可以多次调用一个 Promise 对象的 `then` 方法设置多个回调函数. 这些回调函数会形成一条回调链, 前一个函数的返回值会成为后一个函数的参数:
 
@@ -213,7 +213,7 @@ function request_handler(request) {
 
 ### 异常处理
 
-Promise 的另一个很强大的功能就是异常处理. 上面说了, 除了可以调用 `Promise.then` 设置回调函数, 还可以调用 `Promise.catch` 设置异常回调. 回调和异常回调都会形成一个回调链. 一旦有异常发生, 就会转而执行异常回调; 而若在异常回调中做了容错之后, 又会转而执行回调.
+Promise 的另一个很强大的功能就是异常处理. 上面说了, 除了可以调用 `Promise.prototype.then` 设置回调函数, 还可以调用 `Promise.prototype.catch` 设置异常回调. 回调和异常回调都会形成一个回调链. 一旦有异常发生, 就会转而执行异常回调; 而若在异常回调中做了容错之后, 又会转而执行回调.
 
 ![promise](/assets/images/promise-and-deferred_3.png)
 
@@ -234,7 +234,7 @@ new Promise((cb) => cb(1)).then((res) => {
 });
 ```
 
-`Promise.then` 支持同时设置回调和异常回调, 如上所示, 第一个参数为回调第二个参数为异常回调. 如果把 `throw err` 解注, 则最后会打印出 `error occurred again: cannot be odd`.
+`Promise.prototype.then` 支持同时设置回调和异常回调, 如上所示, 第一个参数为回调第二个参数为异常回调. 如果把 `throw err` 解注, 则最后会打印出 `error occurred again: cannot be odd`.
 
 ## 5. Deferred
 
@@ -267,7 +267,7 @@ def on_timer():
 Timer(1, on_timer).start()
 ```
 
-可以看到 Deferred 和 Promise 还是比较相像的, `Deferred.addCallback` 相当于 `Promise.then`, `Deferred.addErrback` 相当于 `Promise.catch`. 比较大的区别是, Deferred 不需要使用一个函数构造, 而是直接调用 `Deferred.callback` 或 `Deferred.errback` 来告诉它工作已经完成或失败.
+可以看到 Deferred 和 Promise 还是比较相像的, `Deferred.addCallback` 相当于 `Promise.prototype.then`, `Deferred.addErrback` 相当于 `Promise.prototype.catch`. 比较大的区别是, Deferred 不需要使用一个函数构造, 而是直接调用 `Deferred.callback` 或 `Deferred.errback` 来告诉它工作已经完成或失败.
 
 Deferred 的回调链和嵌套 Deferred 跟 Promise 是一样的, 这里举一个同样的例子:
 
