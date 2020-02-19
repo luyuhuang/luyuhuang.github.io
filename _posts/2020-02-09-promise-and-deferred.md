@@ -4,7 +4,6 @@ category: design
 featured: true
 ---
 ## 1. 引言
-
 这篇文章笔者想讨论一下 JavaScript 中的 Promise 和 Python Twisted 中的 Deferred(jQuery 中也有 Deferred, 它们的思路是一致的). 它们很有趣, 也有点复杂. 在协程被广泛应用之前, 它们在网络编程中起到了重要的作用. 在此之前, 我们先来看看一些基本概念.
 
 ## 2. 从请求说起
