@@ -5,7 +5,7 @@ tag:
     - featured
 ---
 ## 1. 引言
-[上篇文章](/algorithms/2019/09/22/pathfinding-graph-search.html) 中主要讲解了 A* 算法. 然而 A* 算法只是一个图搜索算法, 我们在游戏中的地图通常是用一些不规则图形定义的一片行走区域, A* 算法并不能识别这样的地图.
+[上篇文章](/2019/09/22/pathfinding-graph-search.html) 中主要讲解了 A* 算法. 然而 A* 算法只是一个图搜索算法, 我们在游戏中的地图通常是用一些不规则图形定义的一片行走区域, A* 算法并不能识别这样的地图.
 
 ![lol](/assets/images/pathfinding-gen-graph_1.jpeg){:width="400"}
 
