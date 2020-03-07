@@ -1,6 +1,6 @@
 ---
 title: 在Jekyll中使用LaTeX
-category: tools
+tag: tools
 ---
 我准备用 Jekyll + Github page 搭建自己的技术博客. 但是有个问题, 技术文章中不可避免地需要使用到数学公式, Jekyll 原生的 Markdown 解释器总是不能很好地使用 Latex. 通过查阅资料, 我最终解决了这个问题. 下面是我的做法:
 
@@ -47,7 +47,7 @@ category: tools
 大功告成! 在 \\$ \\$ 之间的 LaTex 会变成行内公式就像这样: `$\mathrm{e}^{\pi\mathrm{i}}+1=0$` 转换成 $\mathrm{e}^{\pi\mathrm{i}}+1=0$ ; 新起一段并且在 \\$\\$ \\$\\$ 之间的 LaTeX 会变成段落公式就像这样:
 ```
 
-$$ 
+$$
 H_n=1+\frac{1}{2}+\frac{1}{3}+...+\frac{1}{n}=\sum_{i=1}^{n}\frac{1}{i}=O(\log n)
 $$
 ```

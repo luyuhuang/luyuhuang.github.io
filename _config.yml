@@ -1,41 +1,74 @@
-# configuration
-
-title: Luyu Huang's tech blog
-email: luyu_huang@foxmail.com
-rss: RSS
-description: >-
+text_skin: default
+highlight_theme: default
+url     : https://luyuhuang.github.io
+title   : Luyu Huang's Tech Blog
+description: >
   A programmer's blog, which has posts about programming, algorithms, mathematics, etc.
 
-author: Luyu Huang
-github_username:  luyuhuang
+lang: en
+timezone: Asia/Shanghai
 
-theme: minima
-minima:
-  date_format: "%Y-%m-%d"
+author:
+  name      : Luyu Huang
+  bio       : A software engineer and game developer
+  email     : luyu_huang@foxmail.com
+  github    : luyuhuang
+  rss       : Subscribe via RSS
+
+repository: luyuhuang/luyuhuang.github.io
+repository_tree: master
+
+paths:
+  rss: /feed.xml
+
+excerpt_separator: <!--more-->
+
+license: CC-BY-4.0 # "CC-BY-4.0", "CC-BY-SA-4.0", "CC-BY-NC-4.0", "CC-BY-ND-4.0"
+
+mathjax: true
+mathjax_autoNumber: false
+
+mermaid: false
+chart: false
+
+paginate: 8
+paginate_path: /page:num
+
+sources: bootcdn # bootcdn (default), unpkg
+
+search:
+  provider: default
+
+markdown    : kramdown
+highlighter : rouge
+permalink   : date
 
 kramdown:
   math_engine: null
   smart_quotes: ["apos", "apos", "quot", "quot"]
 
-header_pages:
-  - featured.md
-  - categories.html
-  - about.md
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - /vendor
 
 defaults:
   - scope:
       path: ""
-      type: "posts"
+      type: posts
     values:
-      layout: "post"
-
-show_excerpts: false
-
-exclude:
-  - README.md
-  - Gemfile
-  - Gemfile.lock
+      layout: article
+      sharing: true
+      license: true
+      aside:
+        toc: true
+      show_edit_on_github: true
+      show_subscribe: true
+      pageview: true
 
 plugins:
-  - jekyll-sitemap
   - jekyll-feed
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jemoji

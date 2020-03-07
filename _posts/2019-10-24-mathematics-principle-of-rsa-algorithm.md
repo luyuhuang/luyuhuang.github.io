@@ -1,7 +1,8 @@
 ---
 title: RSA算法背后的数学原理
-category: math
-featured: true
+tag:
+    - math
+    - featured
 ---
 ## 1. 引言
 **RSA算法(RSA algorithm)**是一种非对称加密算法, 广泛应用在互联网和电子商务中. 它使用一对密钥进行加密和解密, 分别称为**公钥(public key)**和**私钥(private key)**. 使用公钥加密的内容只能用私钥解密, 使用私钥加密的内容只能用公钥解密, 并且不能通过公钥在可行的时间内计算出私钥. 这使得加密通信不需要交换私钥, 保证了通信的安全. 那么它是怎么做到这一点的呢? 背后有哪些数学原理? 这篇文章我们来讨论这个问题.
@@ -332,7 +333,7 @@ $$M^{ed}\equiv M\pmod q$$
 
 由于 p, q 都是素数, 所以 $\gcd(p, q)=1$. 由[中国余数定理](#theorem6) 可得
 
-$$ M^{ed}\equiv M\pmod n \tag 1$$
+$$ M^{ed}\equiv M\pmod n \tag{1}$$
 
 所以 RSA 加密算法是有效的. $\blacksquare$
 

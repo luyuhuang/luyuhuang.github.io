@@ -1,6 +1,6 @@
 ---
 title: 调和级数的渐进表示
-category: math
+tag: math
 ---
 > 令 $H_n$ 为第 n 项调和数
 >

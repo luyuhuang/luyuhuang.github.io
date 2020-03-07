@@ -1,18 +1,18 @@
 ---
 title: 四元数描述旋转
-category: math
+tag: math
 ---
 **先看结论:**
 
 对于任意坐标 $(a,b,c)$ , 我们希望绕旋转轴 $(x,y,z)$ 旋转 $\theta$ 度, 其中 x, y, z 的平方和为1. 那么:
 
-令四元数 
+令四元数
 
-$$q=\cos\frac{\theta}{2}+\sin\frac{\theta}{2}(x\mathrm{i}+y\mathrm{j}+z\mathrm{k})$$ 
+$$q=\cos\frac{\theta}{2}+\sin\frac{\theta}{2}(x\mathrm{i}+y\mathrm{j}+z\mathrm{k})$$
 
 $$p=a\mathrm{i}+b\mathrm{j}+c\mathrm{k}$$
 
-得到 
+得到
 
 $$p'=qpq^{-1}$$
 

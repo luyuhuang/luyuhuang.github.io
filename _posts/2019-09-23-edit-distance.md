@@ -1,6 +1,8 @@
 ---
 title: 编辑距离
-category: algorithms
+tag:
+    - algorithms
+    - leetcode
 ---
 题目源自Leetcode: [编辑距离-leetcode](https://leetcode-cn.com/problems/edit-distance/)
 
@@ -36,12 +38,12 @@ category: algorithms
 
 $$
 dp[i][j]=\left\{\begin{matrix}
-\min(dp[i-1][j]+1,dp[i][j-1]+1,dp[i-1][j-1]) & word_1[i-1]=word_2[j-1] \\ 
+\min(dp[i-1][j]+1,dp[i][j-1]+1,dp[i-1][j-1]) & word_1[i-1]=word_2[j-1] \\
 \min(dp[i-1][j]+1,dp[i][j-1]+1,dp[i-1][j-1] + 1) & word_1[i-1]\ne word_2[j-1]
 \end{matrix}\right.
 $$
 
-OK, 有了递推式, 我们可以开始写代码了. 
+OK, 有了递推式, 我们可以开始写代码了.
 
 **第一步:初始化**. 因为我们用 `dp[i][j]` 表示 `word1[:i]` 到 `word2[:j]` 的编辑距离, 所以数组 `dp` 两个维度的长度分别要比 `len(word1)` 和 `len(word2)` 多1. 所以有:
 
@@ -72,7 +74,7 @@ for i in xrange(1, m + 1):
         if word1[i - 1] == word2[j - 1]:
             dp[i][j] = min(dp[i-1][j] + 1, dp[i][j-1] + 1, dp[i-1][j-1])
         else:
-            dp[i][j] = min(dp[i-1][j] + 1, dp[i][j-1] + 1, dp[i-1][j-1] + 1)    
+            dp[i][j] = min(dp[i-1][j] + 1, dp[i][j-1] + 1, dp[i-1][j-1] + 1)
 ```
 
 最后 `return dp[-1][-1]` 即可.

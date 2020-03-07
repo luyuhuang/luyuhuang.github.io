@@ -1,6 +1,6 @@
 ---
 title: 在Lua中使用装饰器
-category: lua
+tag: lua
 ---
 ## 引言
 使用过 Python 的同学都会喜欢上 Python 的装饰器. 它提供一种语法, 对函数进行"声明":

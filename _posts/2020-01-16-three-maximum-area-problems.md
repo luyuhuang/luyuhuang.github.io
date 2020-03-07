@@ -1,6 +1,8 @@
 ---
 title: 三个思路相通的最大面积问题
-category: algorithms
+tag:
+    - algorithms
+    - leetcode
 ---
 笔者在 LeetCode 上看到了三个非常有意思的最大面积问题, 这里来分享一下.
 

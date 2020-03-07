@@ -1,7 +1,8 @@
 ---
 title: 解数独算法
-category: algorithms
-featured: true
+tag:
+    - algorithms
+    - featured
 ---
 ## 1. 引言
 数独是一种经典的数字游戏, 玩家需要在一个 9*9 的棋盘上填数字, 保证每一行, 每一列和每一个小九宫格里的数字都是 1-9 且没有重复. 通常盘面上会给出一些提示数让玩家推导.
@@ -11,7 +12,7 @@ featured: true
 通常数独的解是唯一的, 但随着提示数的减少, 数独也可以有多个解; 极端情况下, 没有提示数, 数独也是可以解的, 只不过解的数量会非常多. 本文讨论解数独的算法, 并且尝试求出一个数独的所有可行解.
 
 ## 2. 合法的数
-我们来看数独的规则: 
+我们来看数独的规则:
 
 > 玩家需要在一个 9*9 的棋盘上填数字, 保证每一行, 每一列和每一个小九宫格里的数字都是 1-9 且没有重复.
 
@@ -103,17 +104,17 @@ void backtrack(int i, int j) {
         return;
     }
 
-    if (m_lattice[i][j] == 0) { 
+    if (m_lattice[i][j] == 0) {
         for (int t = 1; t <= 9; ++t) { // try all number in 1-9
             if (can_set(i, j, t)) {
                 set_num(i, j, t);
                 backtrack(i + (j + 1) / 9, (j + 1) % 9); // try next lattice
                 if (m_done) break;
-                /* if backtrack returned and m_done is false, it's means we 
+                /* if backtrack returned and m_done is false, it's means we
                  * went a wrong rode, we should delete it and try next number */
                 del_num(i, j, t);
             }
-        } 
+        }
     } else {
         /*if it isn't a empty lattice, try next lattice directly*/
         backtrack(i + (j + 1) / 9, (j + 1) % 9);
@@ -129,7 +130,7 @@ void backtrack(int i, int j) {
 前面说了, 回溯法要保存 "在哪个岔道口走了哪条路". 观察下 §3 的算法, 我们需要保存的信息就是哪个格子选择了哪个数字. 我们用一个三元组 `(i, j, n)` 表示 `i` 行 `j` 列的格子选择了数字 `n`. 因此栈就是这样的:
 
 ```cpp
-std::vector<std::tuple<int, int, int> > m_stack; 
+std::vector<std::tuple<int, int, int> > m_stack;
 ```
 
 三元组 `(i, j, n)` 中的 `n` 至关重要. 想象一个格子填了 1, 然后在后续的迭代中走入了 "死胡同", 回溯回来了, 这时候应该把这个格子上的数字 1 删掉, 然后重新从 2 开始选择数字. 因此每次填数字时都应该更新 `n`, 每次选择数字时都应该从 `n + 1` 开始选择, `n` 初始应该为 0. 此外我们还可以通过判断 `n` 是否为 0 来判断这个格子是迭代而来, 还是回溯而来.
@@ -167,7 +168,7 @@ bool calc() {
         }
 
         /* from backtrace, delete it and try next number*/
-        if (n > 0) del_num(i, j, n); 
+        if (n > 0) del_num(i, j, n);
 
         if (m_origin[i * 9 + j] == 0) {
             bool setted = false;
@@ -180,14 +181,14 @@ bool calc() {
                     break;
                 }
             }
-            if (!setted) 
+            if (!setted)
                 back_stack();
 
         } else {
             m_stack.emplace_back(i + (j + 1) / 9, (j + 1) % 9, 0);
         }
     }
-    
+
     return false;
 }
 ```

@@ -1,8 +1,8 @@
 ---
 title: "[翻译] Jekyll 手把手教学"
-category: translations
-featured: true
-excerpt: ""
+tag:
+  - translations
+  - featured
 ---
 {% raw %}
 > 本文由 Luyu Huang 翻译, 原文地址 [https://jekyllrb.com/docs/step-by-step/01-setup/](https://jekyllrb.com/docs/step-by-step/01-setup/). 欢迎提 [issue](https://github.com/luyuhuang/luyuhuang.github.io/issues) 来帮助我改进翻译
@@ -820,7 +820,7 @@ plugins:
 </html>
 ```
 
-重启 Jekyll 服务, 检查下这些 tag 是否都加到 `<head>` 中了.
+重启 Jekyll 服务, 检查下这些 tag: 是否都加到 `<head>` 中了.
 
 ### 环境
 

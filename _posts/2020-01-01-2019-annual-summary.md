@@ -1,6 +1,6 @@
 ---
 title: 2019 Annual Summary
-category: essays
+tag: essays
 ---
 On September 15, 2017, the first day I joined the company, I told myself that I joined a good company which has a good treatment but I was not feeling happy at all. I had plenty of worry and confusion at that moment because I didn't know my direction.
 
