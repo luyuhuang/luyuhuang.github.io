@@ -39,6 +39,12 @@ sources: bootcdn # bootcdn (default), unpkg
 search:
   provider: default
 
+analytics:
+  provider: google
+  google:
+    tracking_id: UA-160051144-1
+    anonymize_ip: true
+
 markdown    : kramdown
 highlighter : rouge
 permalink   : date
