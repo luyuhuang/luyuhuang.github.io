@@ -1,6 +1,7 @@
 ---
 title: "[翻译] Jekyll 手把手教学"
 tag:
+  - tools
   - translations
   - featured
 ---
