@@ -8,4 +8,4 @@ C 实现的序列化函数与 Lua 实现的类似, 都是遍历 table, 遇到简
 
 有时我们对序列化对象的结果没有可读性需求, 这个时候序列化成二进制数据会比较快, 序列化的结果也比较小. 这里我参照了云风大神的项目 [cloudwu/lua-serialize](https://github.com/cloudwu/lua-serialize). 由于我们的项目没有序列化成 userdata 的需求, 这里我就简化, 并且使用我自己写的 buffer 代替他的 `struct write_block`. 反序列化时由于不用考虑链表的问题, 也可以简化. 此外我们还需要将序列化的数据在网络中传递, 这就需要考虑整数字节序的问题了. 因此我还加上了字节序转换.
 
-最后粗略测试了下性能, 这要比 Lua 实现的快四倍左右, 二进制序列化又比文本序列化快一倍以上. 感觉还有优化空间. 完整代码见 [luyuhuang/cseri](https://github.com/luyuhuang/cseri).
+最后粗略测试了下性能, 运行效率大概是 Lua 实现的四倍, 二进制序列化又比文本序列化快一倍以上. 感觉还有优化空间. 完整代码见 [luyuhuang/cseri](https://github.com/luyuhuang/cseri).
