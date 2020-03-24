@@ -36,6 +36,15 @@ paginate_path: /page:num
 
 sources: bootcdn # bootcdn (default), unpkg
 
+comments:
+  provider: gitalk
+  gitalk:
+    clientID: 2a6cb21bc6ad66f93287
+    clientSecret: bbc48f1a1a2bf9079c58d2f80979249abab05ce9
+    repository: luyuhuang.github.io
+    owner: luyuhuang
+    admin: luyuhuang
+
 search:
   provider: default
 
