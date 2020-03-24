@@ -1,4 +1,5 @@
 ---
+key: 10
 title: 编辑距离
 tag:
     - algorithms

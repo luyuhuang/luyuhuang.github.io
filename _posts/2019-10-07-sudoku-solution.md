@@ -1,4 +1,5 @@
 ---
+key: 12
 title: 解数独算法
 tag:
     - algorithms

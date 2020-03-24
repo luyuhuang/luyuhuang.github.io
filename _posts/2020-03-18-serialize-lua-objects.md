@@ -1,4 +1,5 @@
 ---
+key: 27
 title: 序列化 Lua 对象
 tag: lua
 ---

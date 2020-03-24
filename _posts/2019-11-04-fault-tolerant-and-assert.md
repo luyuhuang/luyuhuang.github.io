@@ -1,4 +1,5 @@
 ---
+key: 15
 title: 关于容错和断言的一些思考
 tag: experience
 ---

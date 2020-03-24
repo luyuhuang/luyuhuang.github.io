@@ -1,4 +1,5 @@
 ---
+key: 24
 title: Promise 和 Deferred
 tag:
     - design

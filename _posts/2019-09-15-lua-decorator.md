@@ -1,4 +1,5 @@
 ---
+key: 7
 title: 在Lua中使用装饰器
 tag: lua
 ---

@@ -1,4 +1,5 @@
 ---
+key: 5
 title: 在Jekyll中使用LaTeX
 tag: tools
 ---

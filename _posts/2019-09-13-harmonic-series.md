@@ -1,4 +1,5 @@
 ---
+key: 6
 title: 调和级数的渐进表示
 tag: math
 ---

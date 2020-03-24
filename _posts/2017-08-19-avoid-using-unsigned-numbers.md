@@ -1,4 +1,5 @@
 ---
+key: 1
 title: 避免使用无符号数
 tag: experience
 ---
