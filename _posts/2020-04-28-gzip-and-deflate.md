@@ -1,5 +1,5 @@
 ---
-key: 29
+key: 30
 title: Gzip 格式和 DEFLATE 压缩算法
 tag:
     - algorithms
