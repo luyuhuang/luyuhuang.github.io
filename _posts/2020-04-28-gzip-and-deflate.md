@@ -9,7 +9,7 @@ tag:
 
 当你键入 `tar -zcf src.tar.gz src`, 就可以将 `src` 下的所有文件打包成一个 tar.gz 格式的压缩包. 这里的 "tar" 是归档格式, 将多个文件组合成一个文件; 而 "gz" 指的就是 gzip 压缩格式, 使用 DEFLATE 算法压缩得到. 作为使用最广泛的无损压缩算法, DEFLATE 是怎样工作的, 背后的原理是什么? 这篇文章我们来讨论下这个问题.
 
-DEFLATE 算法结合了 LZ77 算法和 Huffman 编码, 由 Phil Katz 设计, 并被 [RFC1951](https://tools.ietf.org/html/rfc1951) 标准化. 本文是笔者对 [RFC1951](https://tools.ietf.org/html/rfc1951) 和 [zlib](http://www.zlib.net/) 研究的总结, 首先介绍 LZ77 算法, 再阐述 Huffman 编码在 DEFLATE 中的作用, 以及 gzip 的格式.
+DEFLATE 算法结合了 LZ77 算法和 Huffman 编码, 由 Phil Katz 设计, 并被 [RFC1951](https://tools.ietf.org/html/rfc1951) 标准化. 本文是笔者对 [RFC1951](https://tools.ietf.org/html/rfc1951) 和 [zlib](http://www.zlib.net/) 研究的总结, 首先介绍 LZ77 算法, 再阐述 Huffman 编码在 DEFLATE 中的作用; 最后介绍 gzip 的格式.
 
 ## 2. LZ77 算法
 
@@ -228,7 +228,9 @@ $$\{16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15\}$$
 
 最后我们再简单描述下 gzip 的格式.
 
-Gzip 格式由一个或多个**区块(block)**组成. 每个区块的长度不固定, 都有自己的压缩和编码方式. 区块可能起始或结束于任何一个比特, 不必对齐字节. 需要说明的是, 重复标记指示的距离有可能跨越区块.
+Gzip 格式由头部信息, 压缩主体和尾部信息组成. 头部包括文件基本信息, 时间, 压缩方法, 操作系统等; 尾部则包含校验和与原始大小. 这些信息与压缩算法无关, 这里就不深入讨论了, 需要了解的同学可直接参阅 [RFC1952](https://tools.ietf.org/html/rfc1952).
+
+压缩主体由一个或多个**区块(block)**组成. 每个区块的长度不固定, 都有自己的压缩和编码方式. 区块可能起始或结束于任何一个比特, 不必对齐字节. 需要说明的是, 重复标记指示的距离有可能跨越区块.
 
 上文阐述的都是使用动态 Huffman 编码压缩. 事实上一个区块还有可能使用静态 Huffman 编码压缩或者不压缩. 使用静态 Huffman 编码压缩的区块会使用算法预设的 Huffman 编码进行压缩和解压, 不需要存储 Huffman 编码表.
 
@@ -278,3 +280,4 @@ BTW, LZ77 算法还有个简单高效的实现: [ariya/FastLZ](https://github.co
 
 - [RFC1951: DEFLATE Compressed Data Format Specification version 1.3](https://tools.ietf.org/html/rfc1951)
 - [gzip 原理与实现](http://www.360doc.com/content/11/0218/15/2150347_94086443.shtml)
+- [RFC1952: GZIP file format specification version 4.3](https://tools.ietf.org/html/rfc1952)
