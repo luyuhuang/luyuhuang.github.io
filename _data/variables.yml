@@ -40,9 +40,20 @@ default:
     search: default
 
 sources:
+  cloudflare:
+    font_awesome: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css'
+    jquery: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'
+    leancloud_js_sdk: '//cdn.jsdelivr.net/npm/leancloud-storage@3.13.2/dist/av-min.js'
+    chart: 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js'
+    gitalk:
+      js: 'https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js'
+      css: 'https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css'
+    valine: 'https://unpkg.com/valine/dist/Valine.min.js'
+    mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML'
+    mermaid: 'https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.5.2/mermaid.min.js'
+
   bootcdn:
-    # font_awesome: 'https://use.fontawesome.com/releases/v5.0.13/css/all.css'
-    font_awesome: '/assets/fontawesome/css/all.min.css'
+    font_awesome: 'https://use.fontawesome.com/releases/v5.0.13/css/all.css'
     jquery: 'https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js'
     leancloud_js_sdk: '//cdn.jsdelivr.net/npm/leancloud-storage@3.13.2/dist/av-min.js'
     chart: 'https://cdn.bootcss.com/Chart.js/2.7.2/Chart.bundle.min.js'
