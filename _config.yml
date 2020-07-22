@@ -34,7 +34,7 @@ chart: false
 paginate: 8
 paginate_path: /page:num
 
-sources: cloudflare # bootcdn (default), unpkg
+sources: bootcdn # bootcdn (default), unpkg
 
 comments:
   provider: gitalk
