@@ -135,7 +135,7 @@ $$
 这样写下去就没完没了了. 不妨尝试将重复的部分提取出来, 用 lambda 演算替换:
 
 $$
-(\lambda f . \lambda n . (\mathrm{if}\ (\mathrm{eq}\ n\ 0)\ 1\ (\times\ (f\ (-\ n\ 1))\ n)\ )) \tag{3}
+(\lambda f . \lambda n . (\mathrm{if}\ (\mathrm{eq}\ n\ 0)\ 1\ (\times\ (f\ (-\ n\ 1))\ n))) \tag{3}
 $$
 
 可以看到, 递归调用的部分做成了约束变量 $f$, 然后我们只需使用 $\beta$ 规约把 $f$ 替换成自己, 得到:
@@ -231,7 +231,7 @@ Y \equiv \quad & (\lambda F.\ ((\lambda g. (g\ g)) \\
 \tag{8}
 $$
 
-我们只需要将 $(\lambda f . \lambda n . (\mathrm{if}\ (\mathrm{eq}\ n\ 0)\ 1\ (\times\ (f\ (-\ n\ 1))\ n)))$ 应用 $Y$ 即可得到阶乘的 lambda 演算:
+我们只需要将 (3) 式应用 $Y$ 即可得到阶乘的 lambda 演算:
 
 $$
 factorial \equiv (Y\ (\lambda f . \lambda n . (\mathrm{if}\ (\mathrm{eq}\ n\ 0)\ 1\ (\times\ (f\ (-\ n\ 1))\ n))))  \tag{9}
@@ -261,13 +261,13 @@ $$
 
 与 (7) 式完全一致. 至此, 我们得到了完美的阶乘 lambda 项.
 
-(8) 式被称为 **Y-Combinator**. 我们看来 (9) 式中传入 $Y$ 中的 lambda 项
+(8) 式被称为 **Y-Combinator**. 我们再回过头看来 (9) 式中传入 $Y$ 中的 lambda 项, 也就是 (3) 式, 令
 
 $$
 F \equiv (\lambda f . \lambda n . (\mathrm{if}\ (\mathrm{eq}\ n\ 0)\ 1\ (\times\ (f\ (-\ n\ 1))\ n)))
 $$
 
-实际它希望能传入一个 lambda 项 $f$, 使得 $f \equiv (F\ f)$. 因为只有这样, 才能让 $f$ 递归调用自身. 我们称使得 $f \equiv (F\ f)$ 成立的 $f$ 为 $F$ 的**不动点(fixed point)**. 那么 $Y$ 对 $F$ 做了什么呢? 我们算算看:
+实际上 $F$ 希望能传入一个 lambda 项 $f$, 使得 $f \equiv (F\ f)$. 因为只有这样, 才能让 $f$ 递归调用自身. 我们称使得 $f \equiv (F\ f)$ 成立的 $f$ 为 $F$ 的**不动点(fixed point)**. 那么 $Y$ 对 $F$ 做了什么呢? 我们算算看:
 
 $$
 \begin{align}
