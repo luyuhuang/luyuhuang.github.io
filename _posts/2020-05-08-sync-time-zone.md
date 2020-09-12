@@ -1,7 +1,7 @@
 ---
 key: 31
 title: Synchronize time and time zone between client and server
-tag: experience
+tag: [experience, english]
 ---
 The time in online games is generally based on the server time, which include the time used by the client for calculation and display, since the time in the client may be incorrect. In addition, my game project'll be released globally, so it's important to synchronize time zone between client and server. I have to deal with the time zone problems manually since the game is written in Lua and there are no related functions in Lua.
 
