@@ -1,7 +1,7 @@
 ---
 key: 31
 title: Synchronize time and time zone between client and server
-tag: [experience, english]
+tag: [lua, experience, english]
 ---
 The time in online games is generally based on the server time, which include the time used by the client for calculation and display, since the time in the client may be incorrect. In addition, my game project'll be released globally, so it's important to synchronize time zone between client and server. I have to deal with the time zone problems manually since the game is written in Lua and there are no related functions in Lua.
 
@@ -78,7 +78,8 @@ After the client logs in, server tells the client its time and timezone. Server 
 local os_time = os.time
 local os_date = os.date
 local time_diff = 0
-local CLIENT_TIMEZONE = math.floor(os.difftime(now, ostime(osdate("!*t", now))))
+local now = os.time()
+local CLIENT_TIMEZONE = math.floor(os.difftime(now, os_time(os_date("!*t", now))))
 local SERVER_TIMEZONE = CLIENT_TIMEZONE
 
 -- call it when the client loged in
