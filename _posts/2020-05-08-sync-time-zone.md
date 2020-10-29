@@ -78,7 +78,7 @@ After the client logs in, server tells the client its time and timezone. Server 
 local os_time = os.time
 local os_date = os.date
 local time_diff = 0
-local now = os.time()
+local now = os_time()
 local CLIENT_TIMEZONE = math.floor(os.difftime(now, os_time(os_date("!*t", now))))
 local SERVER_TIMEZONE = CLIENT_TIMEZONE
 
@@ -108,3 +108,9 @@ function os.date(format, time)
     return os_date(format, time - CLIENT_TIMEZONE + SERVER_TIMEZONE)
 end
 ```
+
+***
+
+**Updated on October 29, 2020:**
+
+`local CLIENT_TIMEZONE = math.floor(os.difftime(now, os_time(os_date("!*t", now))))` is not a correct way to calculate the client timezone. see [Lua 夏令时时区问题](/2020/10/29/lua-dst.html).
