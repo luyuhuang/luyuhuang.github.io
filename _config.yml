@@ -2,8 +2,9 @@ text_skin: default
 highlight_theme: default
 url     : https://luyuhuang.tech
 title   : Luyu Huang's Tech Blog
-description: >
-  A programmer's blog, which has posts about programming, algorithms, mathematics, etc.
+description: >-
+  Sharing something about programming, algorithms, mathematics, etc. Update from time to time |
+  分享有关编程, 算法, 数学等方面的信息. 不定期更新
 
 lang: en
 timezone: Asia/Shanghai
