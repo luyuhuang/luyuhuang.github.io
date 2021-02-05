@@ -1,5 +1,5 @@
 ---
-key: 48
+key: 49
 title: 自动生成 Lua 热更新代码
 tag: lua
 aside: false
