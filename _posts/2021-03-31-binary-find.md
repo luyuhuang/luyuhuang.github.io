@@ -1,4 +1,5 @@
 ---
+key: 51
 title: 并不简单的二分查找
 tag: algorithms
 aside: false
