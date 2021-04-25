@@ -1,6 +1,6 @@
 ---
 title: ZooKeeper 入门指南
-tag: tools
+tag: [tools, featured]
 ---
 [ZooKeeper](https://zookeeper.apache.org/) 是一个分布式服务中间件, 乍一看有点像一个 NoSQL 数据库系统. 不过它的主要功能不是存储数据, 而是提供一种共享数据和服务间通信的方式, 使用它我们能够更方便地开发分布式软件. 这篇文章介绍 ZooKeeper 的主要特性, 使用方式和应用场景.
 
@@ -156,7 +156,18 @@ ZooKeeper 支持 Java 和 C 的编程接口. 这篇文章我们介绍 C 编程�
 
 环境安装成功后就可以开始编程了. ZooKeeper 官方并没有提供 C API 的文档, 不过 `zookeeper.h` 中有很详细的注释, 相当于是文档了.
 
-下面的例子展示了 ZooKeeper 的 *get children*, *exists*, *create*, *set* 和 *get* 操作:
+ZooKeeper 的 API 有单线程模式和多线程模式两种, 支持同步接口和异步接口. 同步接口仅在多线程模式下适用. 以下是它们的特点:
+
+|         | 多线程 | 单线程 |
+|:--------|:------|:------|
+| **异步接口** | 通过回调函数告知结果, 回调函数运行在子线程 | 通过回调函数告知结果, 回调函数运行在主线程; 需由使用者驱动事件循环 |
+| **同步接口** | 直接返回结果 | - |
+
+#### 同步接口
+
+同步接口比较简单, 首先调用 `zookeeper_init` 创建 ZooKeeper 句柄, 连接上 ZooKeeper 服务器; 然后就可以调用相应的接口执行相应的操作了, 操作的结果也是直接返回的. 例如 `zoo_exists` 是 *exists* 操作, `zoo_get` 是 *get* 操作等.
+
+下面的例子展示了使用同步接口执行 ZooKeeper 的 *exists*, *create*, *get children*, *set* 和 *get* 操作:
 
 ```c++
 #include <iostream>
@@ -173,14 +184,14 @@ int main() {
 
     int rc;
     if (zoo_exists(z, "/data", 0, nullptr) == ZNONODE) {
-        if ((rc = zoo_create(z, "/data", nullptr, -1, &ZOO_OPEN_ACL_UNSAFE, 0, nullptr, 0)) != 0) {
+        if ((rc = zoo_create(z, "/data", nullptr, -1, &ZOO_OPEN_ACL_UNSAFE, 0, nullptr, 0)) != ZOK) {
             std::cout << "create failed: " << rc << std::endl;
             return -1;
         }
     }
 
     String_vector children;
-    if ((rc = zoo_get_children(z, "/", 0, &children)) != 0) {
+    if ((rc = zoo_get_children(z, "/", 0, &children)) != ZOK) {
         std::cout << "list failed: " << rc << std::endl;
         return -1;
     }
@@ -191,7 +202,7 @@ int main() {
     }
 
 
-    if ((rc = zoo_set(z, "/data", "Hello world", 12, -1)) != 0) {
+    if ((rc = zoo_set(z, "/data", "Hello world", 12, -1)) != ZOK) {
         std::cout << "set failed: " << rc << std::endl;
         return -1;
     }
@@ -199,13 +210,15 @@ int main() {
     char buf[512];
     int len = 511;
     Stat stat;
-    if ((rc = zoo_get(z, "/data", 1, buf, &len, &stat)) != 0) {
+    if ((rc = zoo_get(z, "/data", 0, buf, &len, &stat)) != ZOK) {
         std::cout << "get failed: " << rc << std::endl;
         return -1;
     }
 
     buf[len] = '\0';
     std::cout << "= " << buf << std::endl;
+
+    zookeeper_close(z);
 
     return 0;
 }
@@ -222,7 +235,219 @@ playground $ ./zk 2>/dev/null
 = Hello world
 ```
 
+注意我们使用 `-lzookeeper_mt` 链接 ZooKeeper 的多线程动态链接库. 稍后可以看到还可以使用 `-lzookeeper_st` 链接单线程动态链接库.
+
+#### 多线程异步
+
+异步接口一般以 `zoo_a` 开头, 如 `zoo_aexists`, `zoo_aget` 等. 异步接口的使用也并不复杂, 与同步接口不同的是调用者要传入一个回调函数, 操作完成时操作结果会在回调函数中告知.
+
+```c++
+#include <iostream>
+#include <memory>
+#include <pthread.h>
+
+#define THREADED
+#include <zookeeper/zookeeper.h>
+
+int main() {
+    std::cout << "main tid: " << pthread_self() << std::endl;
+
+    zhandle_t *z = zookeeper_init("localhost:2181", nullptr, 10000, nullptr, nullptr, 0);
+    if (!z) {
+        std::cout << "init failed" << std::endl;
+        return -1;
+    }
+
+    zoo_aexists(z, "/data", 0, [](int rc, const struct Stat *stat, const void *data){ // step 1: exists
+        zhandle_t *z = (zhandle_t*)data;
+        std::cout << "callback tid: " << pthread_self() << std::endl;
+
+        auto then = new std::function<void()>([z](){
+            zoo_aget_children(z, "/", 0, [](int rc, const struct String_vector *children, const void *data){ // step 3: get children
+                zhandle_t *z = (zhandle_t*)data;
+                std::cout << "callback tid: " << pthread_self() << std::endl;
+
+                if (rc != ZOK) {
+                    std::cout << "list failed: " << rc << std::endl;
+                    return;
+                }
+
+                std::cout << "= list /" << std::endl;
+                for (int i = 0; i < children->count; ++i) {
+                    std::cout << "  - " << children->data[i] << std::endl;
+                }
+
+                zoo_aset(z, "/data", "Hello world", 12, -1, [](int rc, const struct Stat *stat, const void *data){ // step 4: set
+                    zhandle_t *z = (zhandle_t*)data;
+                    std::cout << "callback tid: " << pthread_self() << std::endl;
+
+                    if (rc != ZOK) {
+                        std::cout << "set failed: " << rc << std::endl;
+                        return;
+                    }
+
+                    zoo_awget(z, "/data", [](zhandle_t *z, int type, int state, const char *path, void *){ // step 5: get & watch
+                        /* watch callback */
+                        std::cout << "callback tid: " << pthread_self() << std::endl;
+
+                        std::cout << path << " changed" << std::endl;
+                        zoo_aget(z, "/data", 0, [](int rc, const char *value, int value_len, const struct Stat *stat, const void *){
+                            if (rc != ZOK) {
+                                std::cout << "get failed: " << rc << std::endl;
+                                return;
+                            }
+
+                            std::cout << "= " << value << std::endl;
+                        }, z);
+                    }, nullptr, [](int rc, const char *value, int value_len, const struct Stat *stat, const void *data){
+                        /* result callback */
+                        std::cout << "callback tid: " << pthread_self() << std::endl;
+
+                        if (rc != ZOK) {
+                            std::cout << "get failed: " << rc << std::endl;
+                            return;
+                        }
+
+                        std::cout << "= " << value << std::endl;
+                    }, data);
+
+                }, data);
+
+            }, z);
+        });
+
+        if (rc == ZNONODE) { // step 2: create if not exists
+            zoo_acreate(z, "/data", nullptr, 0, &ZOO_OPEN_ACL_UNSAFE, 0, [](int rc, const char *value, const void *data){
+                auto *then = (std::function<void()>*)data;
+                if (rc != ZOK) {
+                    std::cout << "create failed: " << rc << std::endl;
+                } else {
+                    (*then)();
+                }
+                delete then;
+            }, then);
+        } else {
+            (*then)();
+            delete then;
+        }
+
+    }, z);
+
+    getchar();
+    zookeeper_close(z);
+}
+```
+
+上面的代码同样依次执行了 *exists*, *create*, *get children*, *set* 和 *get* 操作. 由于操作是异步的, 因此要在回调函数处理结果并执行下一步操作. 注意第五步调用的是 `zoo_awget`, 获取一个节点的内容同时观察该节点. 这个函数传入两个回调函数, 一个是观察回调, 当节点改变时会被调用; 另一个是结果回调, *get* 执行完毕调用它以告知结果. 最后还调用了 `getchar` 阻塞 main 函数以等待异步操作结束.
+
+编译并运行:
+
+```
+playground $ g++ -std=c++11 -o zk zk.cc -lzookeeper_mt
+playground $ ./zk 2>/dev/null
+main tid: 0x104f43d40
+callback tid: 0x16b1a3000
+callback tid: 0x16b1a3000
+= list /
+  - zookeeper
+  - data
+callback tid: 0x16b1a3000
+callback tid: 0x16b1a3000
+= Hello world
+```
+
+可以看到回调函数跑在子线程中. 如果回调函数中访问了临界资源, 就要加锁.
+
+这个时候程序还没退出, 别急着关闭它: 打开 ZooKeeper 客户端, 修改 `/data` 的值, 就能看到程序检测到 `/data` 节点的内容发生了改变:
+
+```
+callback tid: 0x16b1a3000
+/data changed
+= Are you OK
+```
+
+#### 单线程异步
+
+单线程异步接口的使用与多线程异步是一致的, 不同的是需要我们驱动 ZooKeeper 的事件循环. 为此 ZooKeeper 提供了两个接口, `zookeeper_interest` 和 `zookeeper_process`. `zookeeper_interest` 会返回当前 ZooKeeper 期望监听的文件和事件, 例如它会告诉调用者期望监听某个文件的可读事件. 之后我们就可以使用 select(2) 或者 epoll(7) 之类的方式监听文件. 当文件对应的事件触发后, 我们就可以调用 `zookeeper_process` 告诉 ZooKeeper 对应的事件触发了. 这可以嵌入到程序的事件循环中.
+
+我们将上面多线程异步代码的 `getchar();` 替换成如下的代码就可以了:
+
+```c++
+while (1) {
+    int fd, interest, rc;
+    struct timeval tv;
+    if ((rc = zookeeper_interest(z, &fd, &interest, &tv)) != ZOK) {
+        printf("zookeeper_interest failed: %d\n", rc);
+        return -1;
+    }
+
+    struct fd_set rfd, wfd, efd;
+    FD_ZERO(&rfd), FD_ZERO(&wfd), FD_ZERO(&efd);
+    if (interest & ZOOKEEPER_READ) {
+        FD_SET(fd, &rfd);
+    }
+    if (interest & ZOOKEEPER_WRITE) {
+        FD_SET(fd, &wfd);
+    }
+    FD_SET(0, &rfd); // stdin
+
+    int n = select(fd + 1, &rfd, &wfd, &efd, &tv);
+    int events = 0;
+    if (n > 0) {
+        if (FD_ISSET(fd, &rfd)) {
+            events |= ZOOKEEPER_READ;
+        }
+        if (FD_ISSET(fd, &wfd)) {
+            events |= ZOOKEEPER_WRITE;
+        }
+
+        if (FD_ISSET(0, &rfd)) {
+            break;
+        }
+    }
+
+    zookeeper_process(z, events);
+}
+```
+
+注意上面的代码还监听了标准输入, 一旦检测到标准输入就 break 跳出主循环, 跟前面的 `getchar()` 效果一样.
+
+我们再编译运行, 注意这里使用 `-lzookeeper_st` 链接单线程库.
+
+```
+playground $ g++ -std=c++11 -o zk zk.cc -lzookeeper_st
+playground $ ./zk 2>/dev/null
+main tid: 0x100c2fd40
+callback tid: 0x100c2fd40
+callback tid: 0x100c2fd40
+= list /
+  - zookeeper
+  - data
+callback tid: 0x100c2fd40
+callback tid: 0x100c2fd40
+= Hello world
+```
+
+可以看到这次回调函数就运行在主线程中了.
+
 ## 应用
+
+ZooKeeper 有很多种应用, 这里介绍几种常见的应用场景.
+
+### 互斥锁
+
+在任务异步执行的分布式系统中, 当多个进程需要同时访问临界资源时, 我们常常需要对这个资源加锁. 使用 ZooKeeper 很容易实现一个用于分布式系统对互斥锁. 实现互斥锁需要用到 ZooKeeper 节点对两种特殊性质:
+
+- 临时节点: 创建节点时可以指定一个节点是临时节点. 临时节点会在会话结束时自动删除. 互斥锁使用临时节点可以保证当加锁当服务 crash 后自动释放锁.
+- 序列化节点:
+
+具体对做法有以下几步:
+
+### 读写锁
+
+### 队列
+
+### 二阶段提交
 
 ***
 
