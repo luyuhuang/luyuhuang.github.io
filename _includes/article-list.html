@@ -13,6 +13,11 @@
   {%- assign _sorted_list = _sorted_list | reverse -%}
 {%- endif -%}
 
+{% assign _taget = '' %}
+{% if include.open_blank %}
+  {% assign _taget = 'target="_blank"' %}
+{% endif %}
+
 {%- if include.type == 'item' -%}
 <div class="article-list items items--divided">
 {%- elsif include.type == 'brief' -%}
@@ -27,7 +32,7 @@
 
   {%- for _article in _sorted_list -%}
 
-    {%- include snippets/prepend-baseurl.html path=_article.url -%}
+    {%- include snippets/get-nav-url.html path=_article.url -%}
     {%- assign _article_url = __return -%}
 
     {%- if _article.cover -%}
@@ -55,7 +60,7 @@
           </div>
         {%- endif -%}
         <div class="item__content">
-          <header><a href="{{ _article_url }}"><h2 itemprop="headline" class="item__header">{{ _article.title }}</h2></a></header>
+          <header><a href="{{ _article_url }}" {{ _taget }}><h2 itemprop="headline" class="item__header">{{ _article.title }}</h2></a></header>
           <div class="item__description">
             {%- if _article.excerpt and include.show_excerpt -%}
               <div class="article__content" itemprop="description articleBody">
@@ -67,7 +72,7 @@
               </div>
             {%- endif -%}
             {%- if include.show_readmore -%}
-              <p><a href="{{ _article_url }}">{{ _locale_readmore }}</a></p>
+              <p><a href="{{ _article_url }}" {{ _taget }}>{{ _locale_readmore }}</a></p>
             {%- endif -%}
           </div>
           {%- if include.show_info -%}
@@ -104,7 +109,7 @@
           {%- if include.show_info -%}
             <span class="item__meta">{{ _article.date | date: __return }}</span>
           {%- endif -%}
-          <a itemprop="headline" class="item__header" href="{{ _article_url }}">{{ _article.title }}</a></div>
+          <a itemprop="headline" class="item__header" href="{{ _article_url }}" {{ _taget }}>{{ _article.title }}</a></div>
       </li>
 
     {%- elsif include.type == 'grid' -%}
@@ -116,7 +121,7 @@
                 <img class="image" src="{{ _article_cover }}" />
                 <div class="overlay overlay--bottom">
                   <header>
-                    <a href="{{ _article_url }}"><h2 class="card__header">{{ _article.title }}</h2></a>
+                    <a href="{{ _article_url }}" {{ _taget }}><h2 class="card__header">{{ _article.title }}</h2></a>
                   </header>
                 </div>
               </div>
@@ -132,7 +137,7 @@
             {%- endif -%}
               <div class="card__content">
                 <header>
-                  <a href="{{ _article_url }}"><h2 class="card__header">{{ _article.title }}</h2></a>
+                  <a href="{{ _article_url }}" {{ _taget }}><h2 class="card__header">{{ _article.title }}</h2></a>
                 </header>
               </div>
           </div>

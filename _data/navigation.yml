@@ -24,6 +24,9 @@ header:
       # @end locale config
     url: /archive.html
 
+  - title: Friends
+    url: /friends.html
+
   - titles:
       # @start locale config
       en      : &EN       About
