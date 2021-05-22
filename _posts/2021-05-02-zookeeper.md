@@ -251,7 +251,7 @@ ZooKeeper 支持 Java 和 C 的编程接口. 这里我们介绍 C 编程接口.
 
 ### 安装环境
 
-安装 ZooKeeper 的 C 开发环境需要先下载并编译 ZooKeeper 的源码发行版, 这个过程前面讲安装 ZooKeeper 的时候有介绍. 之后进入目录 `zookeeper-client/zookeeper-client-c`, 这里包含了 ZooKeeper C API 的源码. 为了编译这些源码, 我们需要安装 autoconf, automake 和 libtool, 此外还需要安装一个 C++ 单元测试库 cppnuit. 准备就绪后执行 `autoreconf -if` 生成 configure 脚本.
+安装 ZooKeeper 的 C 开发环境需要先下载并编译 ZooKeeper 的源码发行版, 这个过程前面讲安装 ZooKeeper 的时候有介绍. 之后进入目录 `zookeeper-client/zookeeper-client-c`, 这里包含了 ZooKeeper C API 的源码. 为了编译这些源码, 我们需要安装 autoconf, automake 和 libtool, 此外还需要安装一个 C++ 单元测试库 cppnuit. 准备就绪后执行 `autoreconf -if` 生成 configure 脚本.
 
 > 注意: 如果 cppunit 没有安装在标准路径下 (如使用源码编译安装或者使用 brew 安装), 会导致 autoconf 找不到 cppunit. 这必须手动指定 `cppunit.m4` 文件所在的目录. 例如 `cppunit.m4` 的路径为 `/usr/local/share/aclocal/cppunit.m4`, 就应执行 `ACLOCAL="aclocal -I /usr/local/share/aclocal" autoreconf -if`. 但是最新版的 cppunit 已经不会自动安装 `cppunit.m4` 文件了, 这就需要手动将这个文件拷贝到相应的路径下.
 
