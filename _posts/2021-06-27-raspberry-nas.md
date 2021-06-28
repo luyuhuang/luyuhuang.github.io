@@ -225,7 +225,7 @@ NextCloud 对反向代理对支持非常不友好, 我的做法是将 Host 首�
 
 ### 开启外网访问
 
-内网穿透的方案有很多, 我的要求是外网访问需开启 HTTPS. 如果使用国内节点, 域名就需要备案, 比较麻烦. 我最终选择的是 Cloudflare Tunnel, 它能解决 HTTPS 证书的问题, 而且是免费的. 缺点就是访问速度比较慢.
+内网穿透的方案有很多, 我的要求是外网访问需开启 HTTPS. 如果使用国内节点, 域名就需要备案, 比较麻烦. 我最终选择的是 Cloudflare Tunnel, 它能解决 HTTPS 证书的问题, 而且是免费的. 缺点就是访问速度比较慢.
 
 首先, 我们需要在树莓派上安装 `cloudflared`. 直接到 [Release 页](https://github.com/cloudflare/cloudflared/releases)下载二进制文件, 然后复制到一个 PATH 目录下, 如 `/usr/local/bin`.
 
