@@ -2,6 +2,7 @@
 key: 43
 title: Printing parameters in Lua traceback
 tag: [lua, english]
+aside: false
 ---
 When an error occurs, Lua will print a traceback of the call stack, it helps us to find bugs. In many cases, however, a call stack traceback is not enough for us to find out the problem. We need more information, such as the environment, parameters of each function call, even all local variables of the stack.
 

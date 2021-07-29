@@ -2,6 +2,7 @@
 key: 40
 title: A simple way to turn callback pattern to coroutine pattern in Lua
 tag: [lua, english]
+aside: false
 ---
 My game project is written by Lua. However, its framework does not provide a coroutine pattern, it uses a simple callback pattern instead. For example, to send an http request and receive the response, you must write like this:
 
