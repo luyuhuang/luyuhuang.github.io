@@ -1,13 +1,14 @@
 ---
+key: 55
 title: Beware of Hash Collisions in Lua Tables
 tag: [lua, english]
 aside: false
 ---
-We all know that a Lua table is a hash table, which uses a hash function to map a key into one of the slots of the table. However, the result of the hash function is not unique. There exist some keys that have the same hash value, i.e., it may map some different keys into the same slot. We call it **Hash Collision**.
+We all know that a Lua table is a hash table, which uses a hash function to map a key into one of the table's slots. However, the result of the hash function is not unique. There exist some keys that have the same hash value, i.e., it may map some different keys into the same slot. We call it **Hash Collision**.
 
-To observe hash collisions in a Lua table, we add a function to count that there are how many keys in a table are in the main position. A position (index of the slot) is the main position if the position is exactly determined by the hash value. Ideally, if there is no collision, each key is in its main position. However, we may found that there is an existing key occupied the new key's main position when we insert a new key into a table. In that case, we get a hash collision and we have to move the new key to another position that is not the main position.
+To observe hash collisions in a Lua table, we add a function to count how many keys in a table are in their main positions. A position (index of the slot) is the main position if the position is exactly determined by the hash value. Ideally, if there is no collision, each key is in its main position. However, we may found an existing key occupied the new key's main position when we insert a new key into a table. In that case, we get a hash collision and we have to move the new key to another position that is not the main position.
 
-It's easy to determin if a key in its main position. The macro `mainposition` return the main position of a specific key. The following function returns the number of keys in theirs main positions.
+It's easy to determine if a key is in its main position. The macro `mainposition` returns the main position of a specific key. The following function returns the number of keys in their main positions.
 
 ```c
 int luaH_mainposnum(Table *t) {
@@ -36,7 +37,7 @@ static const luaL_Reg tab_funcs[] = {
 };
 ```
 
-Let's see the collisions in a table. The following code inserts random integer keys into a table, then call `table.mainposnum` and print the number of keys in main positions.
+Let's see the collisions in a table. The following code inserts random integer keys into a table, then calls `table.mainposnum` and prints the number of keys in main positions.
 
 ```lua
 for i = 2, 5 do
@@ -59,7 +60,7 @@ T	9998	7486	0.74874974994999
 T	99946	69755	0.69792688051548
 ```
 
-About 30% keys are collided, It seems Lua table performs well. Unfortunately, however, it is not so perfect in all cases. Let's look at an example.
+About 30% of the keys collide, It seems the Lua table performs well. Unfortunately, however, it is not so perfect in all cases. Let's look at an example.
 
 ### Combined ID
 
@@ -96,21 +97,21 @@ Output:
 T	1000	1	0.001
 ```
 
-WTF? All keys are collided and only one key in its main position, we turned the hash table into a linked list! But why?
+WTF? All keys collide and only one key in its main position, we turned the hash table into a linked list! But why?
 
-The problem is due to the hash function of Lua table. Lua table uses the simplest hash function -- modulo. The position of an integer key in a table is equal to the key modulo the capacity of the table. The bad news is that the capacity of a table is always a power of 2. When a number modulo a number that is the power of 2, that's just like to cut down its lowest n bits. In our example, hash results of these Combined IDs are exactly equal, because the lowest 16 bits of these keys are the same server ID. As the result, all keys are mapped to the same slot.
+The problem is due to the hash function of the Lua table. Lua table uses the simplest hash function -- modulo. The position of an integer key in a table is equal to the key modulo the capacity of the table. The bad news is that the capacity of a table is always a power of 2 and that a number modulo of a power of 2 is just its n-bit suffix. In our example, hash results of these Combined IDs are exactly equal, because the lowest 16 bits of these keys are the same server ID. As the result, all keys are mapped to the same slot.
 
-Although fixing low 16 bit of a ID is foolish, a dynamic low n bits ID is not safe neither. Low n bits is not a valid abstract of the whole ID anyway, especially in a combined ID -- there is always some information in its high n bits. In our example, if we generate IDs in other orders:
+Although fixing a low 16 bit of an ID is foolish, a dynamic low n bits ID is not safe neither. A suffix is not a valid abstract of the whole ID anyway, especially in a combined ID -- there is always some information in its high n bits. In our example, if we generate IDs in other orders:
 
 - Server ID + serial number + timestamp: all IDs generated at the same time collision, unless the capacity of the table is not less than $2^{32}$;
 - Timestamp + server ID + serial number: if the capacity is less than $2^{32}$, in the same server, the table has at most $2^{16}$ main positions;
-- Server ID + timestamp + serial number: may be this is the only one acceptible result.
+- Server ID + timestamp + serial number: maybe this is the only acceptable result.
 
 So, in conclusion, if you use combined IDs, be very cautious to put them into a hash table.
 
 ### Distribution by Modulo
 
-To distribute requests to several work services, we often use modulo. For example, assume we have 64 work services. When we get a request from a user whose ID is 10001, we distribute the request to the number `10001 % 64 = 17` service. After that, the service received that request:
+To distribute requests to several work services, we often use modulo. For example, assume we have 64 work services. When we receive a request from a user whose ID is 10001, we distribute the request to the number `10001 % 64 = 17` service. After that, the service received that request:
 
 ```lua
 function request_handler(user_id, data)
@@ -118,7 +119,7 @@ function request_handler(user_id, data)
 end
 ```
 
-So the problem happened then. What, don't you believe it? Let's do an experiment.
+So the problem happened then. What, don't you believe it? Let's experiment.
 
 ```lua
 cache = {}
@@ -145,11 +146,11 @@ And this is the output:
 cache	157	4	0.025477707006369
 ```
 
-Only 5 keys are in theirs main positions and the collision rate is as high as 97.5% !
+Only 5 keys are in their main positions and the collision rate is as high as 97.5% !
 
-The reason is very clear: all the IDs distributed to service 17 have the same suffix, because their modulo 64, a power of 2, is 17.
+The reason is very clear: all the IDs distributed to service 17 have the same suffix, because their modulo 64, a power of 2, is 17. These same suffixes caused hash collisions.
 
-As we see, modulo a power of 2 is really a bad hash function. We need a better hash function.
+As we see, modulo a power of 2 is a bad hash function. We need a better hash function.
 
 ### Better Hash Function
 
@@ -164,10 +165,10 @@ inline uint64_t betterhash(uint64_t x) {
 }
 ```
 
-In this algorithm, every bits of a number are considered, instead of just cut the tail. Let's modify the implimentation of Lua table and change the hash function:
+In this algorithm, every bit of a number is considered, instead of just cut the tail. Let's modify the implementation of the Lua table and change the hash function:
 
 ```c
-#define hashint(t,i)		hashpow2(t, batterhash(i))
+#define hashint(t,i)		hashpow2(t, betterhash(i))
 ```
 
 Let's run the previous examples again:
