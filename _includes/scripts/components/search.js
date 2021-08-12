@@ -82,14 +82,11 @@
         search.clear && search.clear();
       });
 
-      $(function() {
-        if (window.location.pathname === '/' && window.location.search.startsWith('?search=')) {
-          searchModal.show();
-          var val = decodeURIComponent(window.location.search.replace(/^\?search=/, ''));
-          search.setVal(val);
-          search.onInputNotEmpty && search.onInputNotEmpty(val);
-        }
-      });
+      if (window.location.pathname === '/' && window.location.search.startsWith('?search=')) {
+        searchModal.show();
+        var val = decodeURIComponent(window.location.search.replace(/^\?search=/, ''));
+        search.setVal(val);
+      }
     }
   });
 })();

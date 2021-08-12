@@ -109,4 +109,9 @@ window.Lazyload.js([SOURCES.jquery, PAHTS.search_js], function() {
     var itemIndex = $(this).parent().data('index');
     itemIndex >= 0 && (lastActiveIndex = activeIndex, activeIndex = itemIndex, updateResultItems());
   });
+
+  if (window.location.pathname === '/' && window.location.search.startsWith('?search=')) {
+    var val = decodeURIComponent(window.location.search.replace(/^\?search=/, ''));
+    search.onInputNotEmpty(val);
+  }
 });
