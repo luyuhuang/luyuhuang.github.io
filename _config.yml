@@ -8,7 +8,6 @@ description: >-
 
 lang: en
 timezone: Asia/Shanghai
-search_name: Luyu's Blog
 
 author:
   name      : Luyu Huang
@@ -48,6 +47,7 @@ comments:
     admin: luyuhuang
 
 search:
+  name: Luyu's Blog
   provider: default
 
 analytics:

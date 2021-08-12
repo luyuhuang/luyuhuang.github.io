@@ -81,9 +81,11 @@
         $searchInput.val(''); $searchBox.removeClass('not-empty');
         search.clear && search.clear();
       });
+    }
 
-      if (window.location.pathname === '/' && window.location.search.startsWith('?search=')) {
-        searchModal.show();
+    if (window.location.pathname === '/' && window.location.search.startsWith('?search=')) {
+      searchModal.show();
+      if (useDefaultSearchBox) {
         var val = decodeURIComponent(window.location.search.replace(/^\?search=/, ''));
         search.setVal(val);
       }
