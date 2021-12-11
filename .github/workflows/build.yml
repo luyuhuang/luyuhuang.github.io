@@ -11,4 +11,5 @@ jobs:
     - env:
         BUILD_PASSWORD: ${{ secrets.BUILD_PASSWORD }}
       run: |
-        curl --fail-with-body -u "github:$BUILD_PASSWORD" 'https://luyuhuang.tech/build'
+        code=$(curl --silent --output /dev/stderr --write-out "%{http_code}" -u "github:$BUILD_PASSWORD" 'https://luyuhuang.tech/build')
+        test "$code" -eq 200
