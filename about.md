@@ -25,6 +25,14 @@ titles:
   # @end locale config
 key: page-about
 ---
-Hi, This is Luyu Huang. I'm a software engineer and game developer. I graduated from Jiangxi Normal University in Software Engineering and I have been a game programmer since 2016. I used to work on game programming for *Legacy of Discord* from September 2017 to January 2020, which is a popular game in 198 countries. Now I'm striving to become a distinguished programmer. I good at Lua, Python, Go, Linux, etc.
+Hi there, My name is Luyu Huang. I graduated from Jiangxi Normal University in 2017, majoring in Software Engineering. Now I'm a back-end programmer for game development. I mainly use Lua and C++, but I also use many other languages such as Python, Go, JavaScript, etc. I like video games, anime, playing the piano, and drawing. Moreover, I like programming, even though it's a part of my job.
 
-Summary and sharing always make people progress, so I built this site. This site is my personal tech blog, here I would like to write some posts about programming, algorithms, mathematics, etc. I love programming. To me, programming is an awesome endeavor. I am also interested in algorithms, mathematics, and game designing. In addition, I'm a young programmer, I'm still learning. So if you find a mistake in my posts, I would appreciate it if you point it out.
+Here's my blog, mainly about programming technology. I'll write posts about programming, algorithms, mathematics, etc as a summary of my learning and work experience. If you found they're helpful, feel free to let me know and I'll be happy; if you find a mistake in my posts, I would appreciate it if you point it out.
+
+### Works
+
+I wrote some open source software in spare time.
+
+- [VSCode-RSS](https://github.com/luyuhuang/vscode-rss) ![vscode-rss](https://img.shields.io/github/stars/luyuhuang/vscode-rss?style=social) An RSS reader embedded in Visual Studio Code
+- [DWords2](https://github.com/luyuhuang/DWords2) ![DWords2](https://img.shields.io/github/stars/luyuhuang/DWords2?style=social) Show words as Danmaku on the screen to help you memorize them
+- [Subsocks](https://github.com/luyuhuang/subsocks) ![subsocks](https://img.shields.io/github/stars/luyuhuang/subsocks?style=social) A Socks5 proxy that encapsulates Socks5 in other security protocols
