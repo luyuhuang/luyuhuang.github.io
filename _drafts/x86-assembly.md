@@ -1,5 +1,5 @@
 ---
-title: "[翻译] x86 汇编编程的基础介绍"
+title: "[翻译] x86 汇编的基础介绍"
 tag: [translations, assembly]
 ---
 > 原文 [A fundamental introduction to x86 assembly programming](https://www.nayuki.io/page/a-fundamental-introduction-to-x86-assembly-programming)
@@ -107,9 +107,40 @@ CPU 本身并不能成为非常有用的计算机. 只有 8 个数据寄存器�
 - `addl (%ecx), %eax` 意为 `eax = eax + (*ecx);`. (这将从内存中读取 32 位)
 - `addl %ebx, (%edx)` 意为 `*edx = (*edx) + ebx;`. (这会从内存中读写 32 位)
 
-### 寻址方式
+### 寻址模式
+
+当我们写循环代码时, 通常会用一个寄存器保存数组的地址, 然后用另一个寄存器保存当前正在处理的索引. 尽管能够手动计算出当前处理的元素的地址, x86 指令集提供了一种更优雅的解决方案 -- 寻址模式. 它允许你你将一些寄存器相加或相乘. 举些例子可能会更清楚:
+
+- `movb (%eax,%ecx), %bh` 意为 `bh = *(eax + ecx);`.
+- `movb -10(%eax,%ecx,4), %bh` 意为 `bh = *(eax + (ecx * 4) - 10);`.
+
+地址的格式为 `offset(base, index, scale)`, 其中 `offset` 是一个整形常数 (可为正数, 负数, 或 0), `base` 和 `index` 是 32 位寄存器 (但是某些组合不允许), `scale` 为 `{1, 2, 4, 8}` 中的一个. 例如对于一个存储 64 位整数的数组, 我们使用 `scale = 8` 因为每个元素都是 8 字节长度.
+
+只要内存访问合法, 寻址模式就总是有效的. 因此如果你能写 `sbbl %eax, (%eax)`, 那么你也可以写 `sbbl %eax, (%eax,%eax,2)`, 如果你需要这么做的话. 此外注意计算出的地址是一个临时的值, 并不会存储在任何寄存器中. 这很方便, 因为如果要显式计算地址的话, 你还得为其分配一个寄存器; 只有 8 个通用寄存器相当紧张 , 特别是当你还有别的变量要存储的时候.
 
 ## 6. 跳转, 标签和机器码
+
+每个汇编指令可以有零个或多个标签作为前缀. 当我们需要跳转到特定指令时, 这些标签会很有用. 例如:
+
+```nasm
+foo:  /* A label */
+negl %eax  /* Has one label */
+
+addl %eax, %eax  /* Zero labels */
+
+bar: qux: sbbl %eax, %eax  /* Two labels */
+```
+
+The jmp instruction tells the CPU to go to a labelled instruction as the next instruction to execute, instead of going to the next instruction below by default. Here is a simple infinite loop:
+
+`jmp` 指令告诉 CPU 转到标签指定的指令作为下一个执行的指令, 而不是默认的执行接下来的那个指令. 下面的例子是一个简单的死循环:
+
+```nasm
+top: incl %ecx
+jmp top
+```
+
+尽管 `jmp` 跳转是无条件的, x86 还是有其它的跳转指令, 它们检查 `eflags` 的状态, 根据条件是否满足决定是跳转到指定标签还是执行接下来的指令. 条件跳转指令包括: `ja` (大于则跳转), `jle` (小于等于则跳转), `jo` (溢出则跳转), `jnz` (非零则跳转), 等等. 它们总共有 16 种, 其中很多是等价的 -- 例如, `jz` (为零则跳转) 与 `je` (相等则跳转) 相同, `ja` (大于则跳转) 与 `jnbe` (不小于等于则跳转) 相同. 下面是一个使用跳转指令的例子:
 
 ## 7. 栈
 
