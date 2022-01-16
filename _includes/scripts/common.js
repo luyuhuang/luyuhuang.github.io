@@ -4,4 +4,11 @@
     $root.dataset.isTouch = true;
     document.addEventListener('touchstart', function(){}, false);
   }
+
+  var links = document.links, hostname = window.location.hostname;
+  for (var i = 0; i < links.length; ++i) {
+    if (links[i].hostname != hostname) {
+      links[i].target = '_blank';
+    }
+  }
 })();
