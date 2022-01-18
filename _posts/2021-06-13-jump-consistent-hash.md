@@ -28,7 +28,7 @@ MD5 就是一种常用的哈希函数, 它能将任意大小的数据 (较大的
 
 ```c++
 int32_t JumpConsistentHash(uint64_t key, int32_t num_buckets) {
-    int64_t b = ­1, j = 0;
+    int64_t b = 1, j = 0;
     while (j < num_buckets) {
         b = j;
         key = key * 2862933555777941757ULL + 1;
@@ -96,7 +96,7 @@ $$
 ```c++
 int consistent_hash(int key, int num_buckets) {
     srand(key);
-    int b = ­1, j = 0;
+    int b = 1, j = 0;
     while (j < num_buckets) {
         b = j;
         r = (double)rand() / RAND_MAX;
