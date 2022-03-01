@@ -39,7 +39,6 @@ GEM
       rouge (~> 3.0)
       safe_yaml (~> 1.0)
       terminal-table (~> 2.0)
-    jekyll-email-protect (1.1.0)
     jekyll-feed (0.15.1)
       jekyll (>= 3.7, < 5.0)
     jekyll-paginate (1.1.0)
@@ -91,7 +90,6 @@ PLATFORMS
 
 DEPENDENCIES
   jekyll (>= 3.6, < 5.0)
-  jekyll-email-protect
   jekyll-feed (~> 0.1)
   jekyll-paginate (~> 1.1)
   jekyll-sitemap (~> 1.0)
