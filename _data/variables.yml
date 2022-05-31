@@ -73,7 +73,7 @@ sources:
       js: 'https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js'
       css: 'https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css'
     valine: 'https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js'
-    mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.4/unpacked/MathJax.js?config=TeX-MML-AM_CHTML'
+    mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.4/MathJax.js?config=TeX-MML-AM_CHTML'
     mermaid: 'https://cdn.jsdelivr.net/npm/mermaid@8.5.2/dist/mermaid.min.js'
 
   unpkg:
@@ -85,5 +85,17 @@ sources:
       js: 'https://unpkg.com/gitalk/dist/gitalk.min.js'
       css: 'https://unpkg.com/gitalk/dist/gitalk.css'
     valine: 'https://unpkg.com/valine/dist/Valine.min.js'
-    mathjax: 'https://unpkg.com/mathjax@2.7.4/unpacked/MathJax.js?config=TeX-MML-AM_CHTML'
+    mathjax: 'https://unpkg.com/mathjax@2.7.4/MathJax.js?config=TeX-MML-AM_CHTML'
     mermaid: 'https://unpkg.com/mermaid@8.0.0-rc.8/dist/mermaid.min.js'
+
+  self:
+    font_awesome: 'https://use.fontawesome.com/releases/v5.13.1/css/all.css'
+    jquery: 'https://luyuhuang.tech/cdn/npm/jquery@3.5.1/dist/jquery.min.js'
+    leancloud_js_sdk: 'https://luyuhuang.tech/cdn/npm/leancloud-storage@3.13.2/dist/av-min.js'
+    chart: 'https://luyuhuang.tech/cdn/npm/chart.js@2.7.3/dist/Chart.min.js'
+    gitalk:
+      js: 'https://luyuhuang.tech/cdn/npm/gitalk@1/dist/gitalk.min.js'
+      css: 'https://luyuhuang.tech/cdn/npm/gitalk@1/dist/gitalk.min.css'
+    valine: 'https://luyuhuang.tech/cdn/npm/valine@1.4.14/dist/Valine.min.js'
+    mathjax: 'https://luyuhuang.tech/cdn/npm/mathjax@2.7.4/MathJax.js?config=TeX-MML-AM_CHTML'
+    mermaid: 'https://luyuhuang.tech/cdn/npm/mermaid@8.5.2/dist/mermaid.min.js'

@@ -35,7 +35,7 @@ chart: false
 paginate: 8
 paginate_path: /page:num
 
-sources: jsdelivr # bootcdn (default), unpkg
+sources: self # bootcdn (default), unpkg
 
 comments:
   provider: gitalk
