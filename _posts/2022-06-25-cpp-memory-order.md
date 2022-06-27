@@ -435,6 +435,8 @@ Dependency-ordered before 可以 "后接" 一个 carries dependency 的关系以
 - release 操作和 consume 操作构成的 dependency-ordered before 则只能后接 carries dependency 构成 inter-thread happens-before 的关系.
 - 无论 inter-thread happens-before 是怎么构成的, 都可以前接 sequenced-before 以延伸其范围.
 
+![dependency-ordered before](/assets/images/cpp-memory-order_2.svg)
+
 我们来看一个例子:
 
 ```c++
