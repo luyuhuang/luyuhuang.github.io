@@ -13,13 +13,13 @@ tag: practice
 
 我购买的是树莓派 4B, 内存 4GB, 32GB 空白存储卡; 再加上我 2 TB 的西部数据移动硬盘作为数据盘. 这篇文章记录我是怎么做的.
 
-![raspberry](/assets/images/raspberry-nas_1.jpg){:width="600"}
+![raspberry](/assets/images/raspberry-nas_1.jpg){width="600"}
 
 ### 安装操作系统
 
 操作系统的安装比较简单. 我安装的是 Ubuntu Server 20.04. Ubuntu 对树莓派的支持还是非常好的, [官网](https://ubuntu.com/raspberry-pi)上也有详细的教程. 首先我们在官网下载 Ubuntu 树莓派版镜像, 然后到[树莓派官网](https://www.raspberrypi.org/software/)下载树莓派 Imager, 用于将操作系统镜像写入存储卡.
 
-![imager](/assets/images/raspberry-nas_2.png){:width="700"}
+![imager](/assets/images/raspberry-nas_2.png){width="700"}
 
 将存储卡插入电脑, 打开 Imager. 选择我们刚下载的系统镜像, 再选择存储卡, 点击 Write. 等待一段时间, 操作系统就写入存储卡了.
 

@@ -1,6 +1,7 @@
 ---
 key: 36
 title: "Y-Combinator: 如何在匿名函数中递归调用自身"
+math: true
 tag: math
 ---
 如何实现一个阶乘函数? 最简单的做法是使用递归:
@@ -250,7 +251,7 @@ $$
 
 与 (7) 式完全一致. 至此, 我们得到了完美的阶乘 lambda 项.
 
-(8) 式被称为 **Y-Combinator**. 我们再回过头看来 (9) 式中传入 $Y$ 中的 lambda 项, 也就是 (3) 式, 令
+\(8) 式被称为 **Y-Combinator**. 我们再回过头看来 (9) 式中传入 $Y$ 中的 lambda 项, 也就是 (3) 式, 令
 
 $$
 F \equiv (\lambda f . \lambda n . (\mathrm{if}\ (\mathrm{eq}\ n\ 0)\ 1\ (\times\ (f\ (-\ n\ 1))\ n)))

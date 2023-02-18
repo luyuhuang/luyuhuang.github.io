@@ -35,7 +35,7 @@ bool is_in_set(int set, int n) {
 
 我们给每一行, 每一列和每一个小九宫格编号, 如图所示:
 
-![sudoku](/assets/images/sudoku-solution_2.png){:width="450"}
+![sudoku](/assets/images/sudoku-solution_2.png){width="450"}
 
 那么对于一个第 i 行, 第 j 列的格子, 它处于哪个小九宫格呢? 很简单, 作下除法就好了:
 
@@ -70,11 +70,11 @@ bool can_set(int i, int j, int n) {
 
 例如, 在下图中, 根据 §2 所讨论的, 我们可以快速得出粉色格子中可填的数为 1, 2, 4. 到底该填哪一个数呢? 不知道. 不过没关系, 我们先填 1 试试:
 
-![sudoku](/assets/images/sudoku-solution_3.png){:width="350"}
+![sudoku](/assets/images/sudoku-solution_3.png){width="350"}
 
 然后以此类推, 发现填到第 9 个格子就填不下去了! 这意味着我们走到 "死胡同" 里了. 怎么办? 这个时候我们就**回溯**: 一个格子一个格子地<u>回退</u>, <u>重新作选择</u>, 直到解出数独为止. 这便是回溯法.
 
-![sudoku](/assets/images/sudoku-solution_4.png){:width="350"}
+![sudoku](/assets/images/sudoku-solution_4.png){width="350"}
 
 与深度优先遍历类似, 我们可以利用递归算法, 每次递归调用便是<u>迭代</u>, 每次递归调用返回便是<u>回溯</u>. 这样每次作的选择都保存在调用栈里. 代码如下:
 

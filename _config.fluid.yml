@@ -18,11 +18,11 @@
 
 # 用于浏览器标签的图标
 # Icon for browser tab
-favicon: /assets/favicon-16x16.png
+favicon: /img/favicon-16x16.png
 
 # 用于苹果设备的图标
 # Icon for Apple touch
-apple_touch_icon: /assets/favicon-32x32.png
+apple_touch_icon: /img/favicon-32x32.png
 
 # 浏览器标签页中的标题分隔符，效果： 文章名 - 站点名
 # Title separator in browser tab, eg: article - site
@@ -100,7 +100,7 @@ fun_features:
     # 在指定页面开启，不填则在所有页面开启
     # Enable in specified page, all pages by default
     # Options: home | post | tag | category | about | links | page | 404
-    scope: []
+    scope: [home]
 
   # 为文章内容中的标题添加锚图标
   # Add an anchor icon to the title on the post page
@@ -461,7 +461,7 @@ footer:
 index:
   # 首页 Banner 头图，可以是相对路径或绝对路径，以下相同
   # Path of Banner image, can be a relative path or an absolute path, the same on other pages
-  banner_img: /img/default.png
+  banner_img: /img/default.jpg
 
   # 头图高度，屏幕百分比
   # Height ratio of banner image
@@ -471,7 +471,7 @@ index:
   # 头图黑色蒙版的不透明度，available: 0 - 1.0， 1 是完全不透明
   # Opacity of the banner mask, 1.0 is completely opaque
   # Available: 0 - 1.0
-  banner_mask_alpha: 0.3
+  banner_mask_alpha: 0.4
 
   # 首页副标题的独立设置
   # Independent config of home page subtitle
@@ -518,7 +518,7 @@ index:
   # Meta information of post
   post_meta:
     date: true
-    category: true
+    category: false
     tag: true
 
   # 文章通过 sticky 排序后，在首页文章标题前显示图标
@@ -533,9 +533,9 @@ index:
 # Post Page
 #---------------------------
 post:
-  banner_img: /img/default.png
+  banner_img: /img/default.jpg
   banner_img_height: 60
-  banner_mask_alpha: 0.3
+  banner_mask_alpha: 0.4
 
   # 文章在首页的默认封面图，当没有指定 index_img 时会使用该图片，若两者都为空则不显示任何图片
   # Path of the default post cover when `index_img` is not set. If both are empty, no image will be displayed
@@ -556,7 +556,7 @@ post:
       # 格式参照 ISO-8601 日期格式化
       # ISO-8601 date format
       # See: http://momentjs.cn/docs/#/parsing/string-format/
-      format: "LL a"
+      format: "LL"
 
     # 字数统计
     # Word count
@@ -591,7 +591,7 @@ post:
     # 格式参照 ISO-8601 日期格式化
     # ISO-8601 date format
     # See: http://momentjs.cn/docs/#/parsing/string-format/
-    date_format: "LL a"
+    date_format: "LL"
 
     # 是否使用相对时间表示，比如："3 天前"
     # If true, it will be a relative time, such as: "3 days ago"
@@ -641,7 +641,7 @@ post:
 
     # 层级的折叠深度，0 是全部折叠，大于 0 后如果存在下级标题则默认展开
     # Collapse depth. If 0, all headings collapsed. If greater than 0, it will be expanded by default if there are sub headings
-    collapseDepth: 0
+    collapseDepth: 3
 
   # 版权声明，会显示在每篇文章的结尾
   # Copyright, will be displayed at the end of each post
@@ -699,11 +699,11 @@ post:
   math:
     # 开启后文章默认可用，自定义页面如需使用，需在 Front-matter 中指定 `math: true`
     # If you want to use math on the custom page, you need to set `math: true` in Front-matter
-    enable: false
+    enable: true
 
     # 开启后，只有在文章 Front-matter 里指定 `math: true` 才会在文章页启动公式转换，以便在页面不包含公式时提高加载速度
     # If true, only set `math: true` in Front-matter will enable math, to load faster when the page does not contain math
-    specific: false
+    specific: true
 
     # Options: mathjax | katex
     engine: mathjax
@@ -767,9 +767,9 @@ gitalk:
 # Archive Page
 #---------------------------
 archive:
-  banner_img: /img/default.png
+  banner_img: /img/default.jpg
   banner_img_height: 60
-  banner_mask_alpha: 0.3
+  banner_mask_alpha: 0.4
 
 
 #---------------------------
@@ -778,9 +778,9 @@ archive:
 #---------------------------
 category:
   enable: false
-  banner_img: /img/default.png
+  banner_img: /img/default.jpg
   banner_img_height: 60
-  banner_mask_alpha: 0.3
+  banner_mask_alpha: 0.4
 
   # 分类的排序字段，前面带减号是倒序，不带减号是正序
   # Sort field for categories, with a minus sign is reverse order
@@ -807,9 +807,9 @@ category:
 #---------------------------
 tag:
   enable: true
-  banner_img: /img/default.png
+  banner_img: /img/default.jpg
   banner_img_height: 60
-  banner_mask_alpha: 0.3
+  banner_mask_alpha: 0.4
   tagcloud:
     min_font: 15
     max_font: 30
@@ -824,9 +824,9 @@ tag:
 #---------------------------
 about:
   enable: true
-  banner_img: /img/default.png
+  banner_img: /img/default.jpg
   banner_img_height: 60
-  banner_mask_alpha: 0.3
+  banner_mask_alpha: 0.4
   avatar: /img/avatar.png
   name: "Luyu Huang"
   intro: "A back-end developer"
@@ -846,9 +846,9 @@ about:
 # Custom Page through `hexo new page`
 #---------------------------
 page:
-  banner_img: /img/default.png
+  banner_img: /img/default.jpg
   banner_img_height: 60
-  banner_mask_alpha: 0.3
+  banner_mask_alpha: 0.4
 
 
 #---------------------------
@@ -857,9 +857,9 @@ page:
 #---------------------------
 page404:
   enable: true
-  banner_img: /img/default.png
+  banner_img: /img/default.jpg
   banner_img_height: 85
-  banner_mask_alpha: 0.3
+  banner_mask_alpha: 0.4
   # 重定向到首页的延迟(毫秒)
   # Delay in redirecting to home page (milliseconds)
   redirect_delay: 5000
@@ -871,9 +871,9 @@ page404:
 #---------------------------
 links:
   enable: true
-  banner_img: /img/default.png
+  banner_img: /img/default.jpg
   banner_img_height: 60
-  banner_mask_alpha: 0.3
+  banner_mask_alpha: 0.4
   # 友链的成员项
   # Member item of page
   items:

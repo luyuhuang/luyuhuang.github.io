@@ -4,7 +4,7 @@
 
 # Site
 title: Luyu Huang's Blog
-subtitle: 'Less is better than more.'
+subtitle: Stay hungry. Stay foolish.
 description: >-
   Sharing something about programming, algorithms, mathematics, etc. Update from time to time |
   分享有关编程, 算法, 数学等方面的信息. 不定期更新
@@ -80,7 +80,7 @@ meta_generator: true
 ## Hexo uses Moment.js to parse and display date
 ## You can customize the date format as defined in
 ## http://momentjs.com/docs/#/displaying/format/
-date_format: YYYY-MM-DD
+date_format: LL
 time_format: HH:mm:ss
 ## updated_option supports 'mtime', 'date', 'empty'
 updated_option: 'mtime'
@@ -112,5 +112,7 @@ feed:
   path: feed.xml
   limit: 10
 
-mathjax:
-  every_page: true
+pandoc:
+  extra:
+    - from: markdown
+

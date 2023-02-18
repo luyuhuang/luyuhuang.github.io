@@ -1,6 +1,7 @@
 ---
 key: 55
 title: Beware of Hash Collisions in Lua Tables
+math: true
 tag: [lua, english]
 aside: false
 ---

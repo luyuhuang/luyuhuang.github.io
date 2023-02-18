@@ -50,7 +50,7 @@ Someone asked me why did you do LeetCode every day, are you preparing for an int
 
 I insist on memorizing words every day this year. Actually, I didn't learn any new words, I was just reviewing old words on and on. It's about three rounds of CET-6 words and four rounds of IELTS words.
 
-![leetcode](/assets/images/2021-annual-summary_3.jpg){:width="500"}
+![leetcode](/assets/images/2021-annual-summary_3.jpg){width="500"}
 
 I practiced listening and speaking skills on OpenLanguage. I also joined several times of English corner. I found that oral practice helps a lot and I'll spend more time on it.
 
@@ -58,7 +58,7 @@ I practiced listening and speaking skills on OpenLanguage. I also joined several
 
 I have more leisure time this year. I visited Qinhuangdao in April. The weather was cold and clear and few visitors here; the coastal scenery was so beautiful.
 
-![qinhuangdao](/assets/images/2021-annual-summary_4.jpg){:width="600"}
+![qinhuangdao](/assets/images/2021-annual-summary_4.jpg){width="600"}
 
 I'd love to go there again if I have any opportunity.
 

@@ -82,7 +82,7 @@ pprof --pdf ./server server.prof > perf.pdf
 
 我们就能得到类似这样的分析报告:
 
-![cpu-profiler-report](/assets/images/gperftools_1.gif){:width="650"}
+![cpu-profiler-report](/assets/images/gperftools_1.gif){width="650"}
 
 报告会显示函数之间的调用关系, 以及每个函数所占用的时间. 图中每个节点代表一个函数, 每条边代表它们之间的调用关系. 每个节点都有这样的格式
 
@@ -143,7 +143,7 @@ pprof --pdf ./server server.0001.heap > heap.pdf
 
 这能得到类似这样的分析报告:
 
-![heap-profiler-report](/assets/images/gperftools_2.png){:width="650"}
+![heap-profiler-report](/assets/images/gperftools_2.png){width="650"}
 
 与性能报告类似, 内存报告同样显示各个函数的调用关系; 不同的是, 这里展示的是每个函数占用的内存而不是时间. 每个节点上同样有 `local of cumulative` 这样的格式, local 为函数自身代码占用的内存大小, cumulative 为函数自身以及调用其他函数占用的内存大小. 每条边上的数字表示有多少内存是由于调用所指向函数而分配的.
 
@@ -193,7 +193,7 @@ pprof ./server "/tmp/server.2157666._main_-end.heap" --inuse_objects --lines --h
 
 可以得到类似这样的结果:
 
-![heap-profiler-report](/assets/images/gperftools_3.png){:width="650"}
+![heap-profiler-report](/assets/images/gperftools_3.png){width="650"}
 
 结果同样为函数调用关系图, 每个节点上的 `local of cumulative` 指出泄露了多少个对象. local 为这个函数自身代码导致泄露的对象数量, cumulative 为 local 加上调用其他函数导致泄露的对象数量. 每条边上的数字指出有多少对象的泄露是调用所指向函数导致的.
 

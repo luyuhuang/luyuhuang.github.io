@@ -1,6 +1,7 @@
 ---
 key: 48
 title: 由斜杠划分的区域
+math: true
 tag: [algorithms, leetcode]
 aside: false
 ---

@@ -1,6 +1,7 @@
 ---
 key: 5
 title: 在Jekyll中使用LaTeX
+math: true
 tag: tools
 ---
 我准备用 Jekyll + Github page 搭建自己的技术博客. 但是有个问题, 技术文章中不可避免地需要使用到数学公式, Jekyll 原生的 Markdown 解释器总是不能很好地使用 Latex. 通过查阅资料, 我最终解决了这个问题. 下面是我的做法:

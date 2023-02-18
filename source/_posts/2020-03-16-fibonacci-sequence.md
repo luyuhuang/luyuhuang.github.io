@@ -1,6 +1,7 @@
 ---
 key: 26
 title: 矩阵的 n 次方和斐波那契数列通项式
+math: true
 tag: math
 ---
 斐波那契数列大家应该非常熟悉, 这是一个典型的递归定义的数列. 那么这样一个递归定义的数列的通项式是怎样的, 它又是如何推导出来的呢? 这里我们从寻找矩阵的 n 次方说起.
@@ -19,16 +20,15 @@ $$Av=\lambda v \tag 1$$
 
 成立. 实数 $\lambda$ 就被称为矩阵 $A$ 的特征值, 与之对应的向量 $v$ 就被称为矩阵 $A$ 的特征向量. 这也就是说对于向量 $v$ 来说, 乘上矩阵 $A$ 和乘上实数 $\lambda$ 的效果是一样的.
 
-我们在 $Av=\lambda v$ 右边乘上单位矩阵 $I$, 可以转换成 $(A-\lambda I)v=0$. 把 $v$ 看作未知数, 这就是个齐次线性方程. 因为 $v$ 是非零向量, 也就是说这个方程要有非零解; 而 $(A-\lambda I)$ 是方阵, 这样的齐次线性方程有非零解的条件就是 $\|A-\lambda I\|=0$. 解这个方程就可得到若干个特征值 $\lambda_1, \lambda_2, ...$. 然后把这些特征值带入 (1) 式, 就可得到每个特征值对应的特征向量.
+我们在 $Av=\lambda v$ 右边乘上单位矩阵 $I$, 可以转换成 $(A-\lambda I)v=0$. 把 $v$ 看作未知数, 这就是个齐次线性方程. 因为 $v$ 是非零向量, 也就是说这个方程要有非零解; 而 $(A-\lambda I)$ 是方阵, 这样的齐次线性方程有非零解的条件就是 $|A-\lambda I|=0$. 解这个方程就可得到若干个特征值 $\lambda_1, \lambda_2, ...$. 然后把这些特征值带入 (1) 式, 就可得到每个特征值对应的特征向量.
 
-以 $$
-A = \begin{pmatrix}
+以 $A = \begin{pmatrix}
 4 & -12\\
 -12 & 11
-\end{pmatrix}
-$$ 为例. 首先我们解方程 $\|A-\lambda I\|=0$
+\end{pmatrix}$ 为例. 首先我们解方程 $|A-\lambda I|=0$
 
 $$
+\begin{align}
 \begin{vmatrix}
 4 - \lambda & -12\\
 -12 &  11 - \lambda
@@ -37,6 +37,7 @@ $$
 \lambda^2 - 15\lambda - 100 = 0 \\
 (\lambda - 20)(\lambda + 5) = 0 \\
 \lambda_1 = 20, \lambda_2 = -5
+\end{align}
 $$
 
 得到两个特征值 $\lambda_1 = 20, \lambda_2 = -5$. 然后我们分别将 $\lambda_1, \lambda_2$ 代入 (1) 式, 得到关于每个特征向量的方程. 注意到特征向量是单位向量, 因此每个方程都有唯一解.
@@ -44,7 +45,8 @@ $$
 对于 $\lambda_1 = 20$,
 
 $$
-\left\{\begin{matrix}
+\begin{align}
+& \left\{\begin{matrix}
 \begin{pmatrix}
 4 & -12\\
 -12 & 11
@@ -70,18 +72,21 @@ x_1^2 + y_1^2 = 1
 x_1^2 + y_1^2 = 1
 \end{matrix}\right.
 \\
-v_1 = \begin{pmatrix}
+\\
+& v_1 = \begin{pmatrix}
 x_1 \\ y_1
 \end{pmatrix} =
 \begin{pmatrix}
 3/5 \\ -4/5
 \end{pmatrix}
+\end{align}
 $$
 
 对于 $\lambda_1 = -5$,
 
 $$
-\left\{\begin{matrix}
+\begin{align}
+& \left\{\begin{matrix}
 \begin{pmatrix}
 4 & -12\\
 -12 & 11
@@ -107,58 +112,57 @@ x_2^2 + y_2^2 = 1
 x_2^2 + y_2^2 = 1
 \end{matrix}\right.
 \\
-v_2 = \begin{pmatrix}
+\\
+& v_2 = \begin{pmatrix}
 x_2 \\ y_2
 \end{pmatrix} =
 \begin{pmatrix}
 4/5 \\ 3/5
 \end{pmatrix}
+\end{align}
 $$
 
 求得特征向量和特征值之后, 我们就可以对角化矩阵了. 假设一个 $m\times m$ 的矩阵 $A$ 有 m 个不同的特征值和特征向量, 我们以特征向量为列向量构造矩阵 $P = (v_1, v_2, ..., v_m)$. 那么有
 
 $$
-AP = A(v_1, v_2, ..., v_m) \\
-= (Av_1, Av_2, ..., Av_m) \\
-= (\lambda_1 v_1, \lambda_2 v_2, ..., \lambda_m v_m) \\
-= (v_1, v_2, ..., v_m)\begin{pmatrix}
-\lambda_1 & &  & \\
- & \lambda_2 &  & \\
- &  & ... & \\
- &  &  & \lambda_m
-\end{pmatrix}
+\begin{align}
+AP &= A(v_1, v_2, ..., v_m) \\
+   &= (Av_1, Av_2, ..., Av_m) \\
+   &= (\lambda_1 v_1, \lambda_2 v_2, ..., \lambda_m v_m) \\
+   &= (v_1, v_2, ..., v_m)\begin{pmatrix}
+        \lambda_1 & &  & \\
+         & \lambda_2 &  & \\
+         &  & ... & \\
+         &  &  & \lambda_m
+      \end{pmatrix}
+\end{align}
 $$
 
-我们记对角矩阵 $$
-\begin{pmatrix}
+我们记对角矩阵 $\begin{pmatrix}
 \lambda_1 & &  & \\
  & \lambda_2 &  & \\
  &  & ... & \\
  &  &  & \lambda_m
-\end{pmatrix}
-$$ 为 $B$, 所以有 $AP = PB$. 因为 $A$ 有 m 个不同的特征值, 所以这些特征值对应的特征向量是线性无关的(证明略). 因此矩阵 $P$ 的逆存在, 所以有 $A=PBP^{-1}$ 和 $B=P^{-1}AP$. 这就完成了矩阵的对角化.
+\end{pmatrix}$ 为 $B$, 所以有 $AP = PB$. 因为 $A$ 有 m 个不同的特征值, 所以这些特征值对应的特征向量是线性无关的(证明略). 因此矩阵 $P$ 的逆存在, 所以有 $A=PBP^{-1}$ 和 $B=P^{-1}AP$. 这就完成了矩阵的对角化.
 
-我们还以 $$
-A = \begin{pmatrix}
+我们还以 $A = \begin{pmatrix}
 4 & -12\\
 -12 & 11
-\end{pmatrix}
-$$ 为例, $A$ 有两个特征值 $\lambda_1 = 20, \lambda_2 = -5$ 和与之对应的特征向量 $$v_1 = \begin{pmatrix}
+\end{pmatrix}$ 为例, $A$ 有两个特征值 $\lambda_1 = 20, \lambda_2 = -5$ 和与之对应的特征向量 $v_1 = \begin{pmatrix}
 3/5 \\ -4/5
 \end{pmatrix}, v_2 = \begin{pmatrix}
 4/5 \\ 3/5
-\end{pmatrix} $$. 因此 $$
-P = \begin{pmatrix}
+\end{pmatrix}$. 因此 $P = \begin{pmatrix}
 3/5 & 4/5 \\
 -4/5 & 3/5
-\end{pmatrix} $$ 和 $$
-B = \begin{pmatrix}
+\end{pmatrix}$ 和 $B = \begin{pmatrix}
 20 & 0 \\
 0 & -5
-\end{pmatrix}$$. 可以计算出
+\end{pmatrix}$. 可以计算出
 
 $$
-A^n = \begin{pmatrix}
+\begin{align}
+A^n &= \begin{pmatrix}
 3/5 & 4/5 \\
 -4/5 & 3/5
 \end{pmatrix} \begin{pmatrix}
@@ -168,10 +172,11 @@ A^n = \begin{pmatrix}
 3/5 & 4/5 \\
 -4/5 & 3/5
 \end{pmatrix}^{-1} \\
-= \frac{1}{25} \begin{pmatrix}
+&= \frac{1}{25} \begin{pmatrix}
 9 \cdot 20^n + 12(-5)^n & -12 \cdot 20^n + 12(-5)^n \\
 -12 \cdot 20^n + 12(-5)^n & -16 \cdot 20^n + 9(-5)^n
 \end{pmatrix}
+\end{align}
 $$
 
 ### 斐波那契数列的通项式
@@ -179,57 +184,62 @@ $$
 斐波那契数列 $F_n$ 定义 $F_1 = F_2 = 0$, 且 $F_n = F_{n-1} + F_{n-2}$. 因此我们有
 
 $$
+\begin{align}
 \begin{pmatrix}
 F_{n+2} \\ F_{n+1}
-\end{pmatrix} = \begin{pmatrix}
+\end{pmatrix} &= \begin{pmatrix}
 F_{n+1} + F_n \\ F_{n+1}
 \end{pmatrix} \\
-= \begin{pmatrix}
+&= \begin{pmatrix}
 1 & 1 \\
 1 & 0
 \end{pmatrix} \begin{pmatrix}
 F_{n+1} \\ F_n
 \end{pmatrix} \\
-= \begin{pmatrix}
+&= \begin{pmatrix}
 1 & 1 \\
 1 & 0
 \end{pmatrix}^2 \begin{pmatrix}
 F_n \\ F_{n-1}
 \end{pmatrix} \\
-... \\
-= \begin{pmatrix}
+&... \\
+&= \begin{pmatrix}
 1 & 1 \\
 1 & 0
 \end{pmatrix}^n \begin{pmatrix}
 F_2 \\ F_1
 \end{pmatrix} \\
-= \begin{pmatrix}
+&= \begin{pmatrix}
 1 & 1 \\
 1 & 0
 \end{pmatrix}^n \begin{pmatrix}
 1 \\ 1
 \end{pmatrix} \tag 2
+\end{align}
 $$
 
-问题转换成求矩阵 $$ \begin{pmatrix}
+问题转换成求矩阵 $\begin{pmatrix}
 1 & 1 \\
 1 & 0
-\end{pmatrix}$$ 的 n 次方.
+\end{pmatrix}$ 的 n 次方.
 
-那么我们首先求解方程 $\|A-\lambda I\| = 0$:
+那么我们首先求解方程 $|A-\lambda I| = 0$:
 
 $$
+\begin{align}
 \begin{vmatrix}
 1 - \lambda & 1 \\
 1 & -\lambda
-\end{vmatrix} = 0 \\
-\lambda^2 - \lambda - 1 = 0 \\
-\lambda_1 = \frac{1+\sqrt 5}{2}, \lambda_2 = \frac{1-\sqrt 5}{2}
+\end{vmatrix} &= 0 \\
+\lambda^2 - \lambda - 1 &= 0 \\
+\lambda_1 = \frac{1+\sqrt 5}{2} &, \lambda_2 = \frac{1-\sqrt 5}{2}
+\end{align}
 $$
 
 又根据 (1) 式, 有
 
 $$
+\begin{align}
 \begin{pmatrix}
 1 & 1 \\
 1 & 0
@@ -246,24 +256,26 @@ x_2 \\ y_2
 \end{pmatrix} = \lambda_2 \begin{pmatrix}
 x_2 \\ y_2
 \end{pmatrix}
+\end{align}
 $$
 
-可得 $$v_1 = \begin{pmatrix}
+可得 $v_1 = \begin{pmatrix}
 \lambda_1 \\ 1
 \end{pmatrix}, v_2 = \begin{pmatrix}
 \lambda_2 \\ 1
-\end{pmatrix}$$. 所以 $$P = \begin{pmatrix}
+\end{pmatrix}$. 所以 $P = \begin{pmatrix}
 \lambda_1 & \lambda_2 \\
 1 & 1
 \end{pmatrix}, B = \begin{pmatrix}
 \lambda_1 & 0 \\
 0 & \lambda_2
-\end{pmatrix}$$.
+\end{pmatrix}$.
 
 接下来求 $A^n$:
 
 $$
-A^n = \begin{pmatrix}
+\begin{align}
+A^n &= \begin{pmatrix}
 \lambda_1 & \lambda_2 \\
 1 & 1
 \end{pmatrix} \begin{pmatrix}
@@ -273,7 +285,7 @@ A^n = \begin{pmatrix}
 \lambda_1 & \lambda_2 \\
 1 & 1
 \end{pmatrix}^{-1} \\
-= \begin{pmatrix}
+&= \begin{pmatrix}
 \lambda_1 & \lambda_2 \\
 1 & 1
 \end{pmatrix} \begin{pmatrix}
@@ -283,25 +295,27 @@ A^n = \begin{pmatrix}
 1 & -\lambda_2 \\
 -1 & \lambda_1
 \end{pmatrix} \\
-= \frac{1}{\sqrt 5} \begin{pmatrix}
+&= \frac{1}{\sqrt 5} \begin{pmatrix}
 \lambda_1^{n+1} & \lambda_2^{n+1} \\
 \lambda_1^n & \lambda_2^n
 \end{pmatrix} \begin{pmatrix}
 1 & -\lambda_2 \\
 -1 & \lambda_1
 \end{pmatrix} \\
-= \frac{1}{\sqrt 5} \begin{pmatrix}
+&= \frac{1}{\sqrt 5} \begin{pmatrix}
 \lambda_1^{n+1} - \lambda_2^{n+1} & \lambda_1^n - \lambda_2^n \\
 \lambda_1^n - \lambda_2^n & \lambda_1^{n-1} - \lambda_2^{n-1}
 \end{pmatrix}
+\end{align}
 $$
 
 由 (2) 式得
 
 $$
+\begin{align}
 \begin{pmatrix}
 F_{n+2} \\ F_{n+1}
-\end{pmatrix} = \begin{pmatrix}
+\end{pmatrix} &= \begin{pmatrix}
 1 & 1 \\
 1 & 0
 \end{pmatrix}^n \begin{pmatrix}
@@ -312,7 +326,7 @@ F_{n+2} \\ F_{n+1}
 \end{pmatrix} \begin{pmatrix}
 1 \\ 1
 \end{pmatrix} \\
-= \frac{1}{\sqrt 5} \begin{pmatrix}
+&= \frac{1}{\sqrt 5} \begin{pmatrix}
 \lambda_1^{n+1} - \lambda_2^{n+1} + \lambda_1^n - \lambda_2^n \\
 \lambda_1^n - \lambda_2^n + \lambda_1^{n-1} - \lambda_2^{n-1}
 \end{pmatrix}
@@ -320,7 +334,7 @@ F_{n+2} \\ F_{n+1}
 \lambda_1^n(\lambda_1+1) - \lambda_2^n(\lambda_2 + 1) \\
 \lambda_1^{n-1}(\lambda_1+1) - \lambda_2^{n-1}(\lambda_2 + 1)
 \end{pmatrix} \\
-= \frac{1}{\sqrt 5} \begin{pmatrix}
+&= \frac{1}{\sqrt 5} \begin{pmatrix}
 \lambda_1^n\lambda_1^2 - \lambda_2^n\lambda_2^2 \\
 \lambda_1^{n-1}\lambda_1^2 - \lambda_2^{n-1}\lambda_2^2
 \end{pmatrix}
@@ -328,6 +342,7 @@ F_{n+2} \\ F_{n+1}
 \lambda_1^{n+2} - \lambda_2^{n+2} \\
 \lambda_1^{n+1} - \lambda_2^{n+1}
 \end{pmatrix}
+\end{align}
 $$
 
 最后我们得到斐波那契数列的通项公式为

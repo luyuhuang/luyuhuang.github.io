@@ -255,7 +255,7 @@ int main() {
 }
 ```
 
-(7) 处的断言永远不会失败. 因为 `x` 和 `y` 的修改顺序是全局一致的, 如果先执行 (1) 后执行 (2), 则 `read_y_then_x` 中循环 (5) 退出时, 能保证 `y` 为 `true`, 此时 `x` 也必然为 `true`, 因此 (6) 会被执行; 同理, 如果先执行 (2) 后执行 (1), 则循环 (3) 退出时 `y` 也必然为 `true`, 因此 (4) 会被执行. 无论如何, `z` 最终都不会等于 0.
+\(7) 处的断言永远不会失败. 因为 `x` 和 `y` 的修改顺序是全局一致的, 如果先执行 (1) 后执行 (2), 则 `read_y_then_x` 中循环 (5) 退出时, 能保证 `y` 为 `true`, 此时 `x` 也必然为 `true`, 因此 (6) 会被执行; 同理, 如果先执行 (2) 后执行 (1), 则循环 (3) 退出时 `y` 也必然为 `true`, 因此 (4) 会被执行. 无论如何, `z` 最终都不会等于 0.
 
 Sequencial consistent 可以实现 synchronizes-with 的关系. 如果一个 `memory_order_seq_cst` 的 load 操作在某个原子变量上读到了一个 `memory_order_seq_cst` 的 store 操作在这个原子变量中写入的值, 则 store 操作 "synchronizes-with" load 操作. 在上面的例子中, 有 (1) "synchronizes-with" (3) 和 (2) "synchronizes-with" (5).
 
@@ -283,7 +283,7 @@ void thread2() {
 }
 ```
 
-(4) 处的断言就有可能失败. 因为 (2) 与 (3) 之间没有 synchronizes-with 的关系, 所以就不能保证 (1) "happens-before" (4). 因此 (4) 就有可能读到 `false`. 至于 relaxed 顺序模型能保证的修改顺序一致性的例子, 2.1 节中已经讨论过了, 这里就不多赘述了.
+\(4) 处的断言就有可能失败. 因为 (2) 与 (3) 之间没有 synchronizes-with 的关系, 所以就不能保证 (1) "happens-before" (4). 因此 (4) 就有可能读到 `false`. 至于 relaxed 顺序模型能保证的修改顺序一致性的例子, 2.1 节中已经讨论过了, 这里就不多赘述了.
 
 Relaxed 顺序模型的开销很小. 在 x86 架构下, `memory_order_relaxed` 的操作不会产生任何其他的指令, 只会影响编译器优化, 确保操作是原子的. Relaxed 模型可以用在一些不需要线程同步的场景, 但是使用时要小心. 例如 `std::shared_ptr` 增加引用计数时用的就是 `memory_order_relaxed`, 因为不需要同步; 但是减小应用计数不能用它, 因为需要与析构操作同步.
 
@@ -457,7 +457,7 @@ void thread2() {
 }
 ```
 
-(4) 处的循环退出时, consume 操作 (4) 读取到 release 操作 (3) 写入的值, 因此 (3) "dependency-ordered before" (4). 由此可以推导出:
+\(4) 处的循环退出时, consume 操作 (4) 读取到 release 操作 (3) 写入的值, 因此 (3) "dependency-ordered before" (4). 由此可以推导出:
 
 - `p2` 的值作为 (5) 的操作数, 因此 (4) "carries a dependency into" (5);
 - 因为 (3) "dependency-ordered before" (4) 且 (4) "carries a dependency into" (5), 所以 (3) "inter-thread happens-before" (5);
@@ -533,7 +533,7 @@ void thread2() {
     mu.lock(); // (2)
 }
 ```
-(1) 和 (2) 之间没有任何同步关系, 假设先执行操作 (1) 后执行操作 (2), 那么 `thread1` 中 (1) 之前的操作结果不一定对 `thread2` 可见. 但能确定的是, 只会有一个线程得到锁, 这是由原子变量的修改顺序 (modification order) 所保证的. 要么 `thread1` 先将 `flag` 置为 `true`, 要么 `thread2` 先将 `flag` 置为 `true`, 这个顺序是全局一致的.
+\(1) 和 (2) 之间没有任何同步关系, 假设先执行操作 (1) 后执行操作 (2), 那么 `thread1` 中 (1) 之前的操作结果不一定对 `thread2` 可见. 但能确定的是, 只会有一个线程得到锁, 这是由原子变量的修改顺序 (modification order) 所保证的. 要么 `thread1` 先将 `flag` 置为 `true`, 要么 `thread2` 先将 `flag` 置为 `true`, 这个顺序是全局一致的.
 
 ### 4.2 线程安全的单例模式
 

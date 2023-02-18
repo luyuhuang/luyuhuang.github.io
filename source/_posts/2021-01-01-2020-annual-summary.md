@@ -42,9 +42,9 @@ I did many algorithmic exercises on Leetcode, Some of them were very hard for me
 
 I kept memorizing words every day and completed a daily plan every day. I also have been reading English articles, nearly every day.
 
-![baicizhan](/assets/images/2020-annual-summary_3.png){:width="500"}
+![baicizhan](/assets/images/2020-annual-summary_3.png){width="500"}
 
-![shanbei](/assets/images/2020-annual-summary_4.png){:width="500"}
+![shanbei](/assets/images/2020-annual-summary_4.png){width="500"}
 
 In addition, I also read 2 English books: *The Little Schemer* and *The Go Programming Language*, as well as several papers. However, depressingly, my English didn't improve significantly. So many words are confused, memorized one, and then forget other similar ones. I have to repeat these over and over again.
 
@@ -63,11 +63,11 @@ I didn't spend much time reading, in 2020 I only read 4 books.
 
 On weekends that are not cold, I like to cycle around Beijing. One day, I ride a bicycle for about 30km, from my residence to Nanluoguxiang (南锣鼓巷), Tian'anmen, Zhengyangmen, Ming City Wall Ruins, Beijing Railway Station, and then back home. Autumn in Beijing is beautiful, the sky is clear and blue, over a peaceful and busy city.
 
-![city-wall](/assets/images/2020-annual-summary_5.jpg){:width="600"}
+![city-wall](/assets/images/2020-annual-summary_5.jpg){width="600"}
 
 In November, I went to Shanghai and I attended a concert of *the Hyperbolic Chorus (双曲线合唱团)*. The singing touched me, it's so warm and beautiful.
 
-![concert](/assets/images/2020-annual-summary_6.jpg){:width="600"}
+![concert](/assets/images/2020-annual-summary_6.jpg){width="600"}
 
 I also met several old friends and talked about life, working, and career. It made me feel not alone and eased my pressure. Thank you, my friends.
 

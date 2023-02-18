@@ -1,6 +1,7 @@
 ---
 key: 9
 title: 详解寻路算法(1)-图搜索
+math: true
 tag:
     - algorithms
     - featured
@@ -95,7 +96,7 @@ def greedy(graph, s, g):
 
 这个算法被称为 **贪婪优先搜索(Greedy Best First Search)**. 与 Dijkstra 类似, 它也总是维护一个优先队列; 不同的是, 这个优先队列是根据离目标点的距离进行排序, 而不是最短路径估计. 这样一来, 算法就会不断地朝这目标点的方向进行搜索, 直到搜索到目标点. 我们来看看它是怎么工作的:
 
-![greedy](/assets/images/pathfinding-graph-search_3.png){:width="500"}
+![greedy](/assets/images/pathfinding-graph-search_3.png){width="500"}
 
 图中节点上的数字表示节点距离目标点的距离. 可以看到, 这个例子的图中一共有12个节点, 而我们只迭代了6次就找到了到目标节点的最短路径. 这便是启发式策略的好处. 但是这样一定能找到最短的路径吗? 去掉两条边试试:
 
@@ -123,7 +124,7 @@ def astar(graph, s, g):
 ```
 这样就好啦! 可以说与 Dijkstra 唯一的不同就是优先队列不再只以 `v.d` 作为排序依据, 而是 `v.d +  heuristic(v, g)`. 这意味着不会每次都取 `v.d` 最小的点, 一个节点离目标点越近, 就越有机会被优先考虑. 来看看它是怎么工作的:
 
-![greedy fail](/assets/images/pathfinding-graph-search_5.png){:width="600"}
+![greedy fail](/assets/images/pathfinding-graph-search_5.png){width="600"}
 
 图中用斜杠隔开的两个数字分别是 `v.d` 和 `v.d + heuristic(v, g)`. 图(a)展示了循环前的状态; 之后的 (b) - (h) 展示了每次循环的状态: 每次从队列(即所有的橙色节点)中选取 `v.d + heuristic(v, g)` 最小的节点, 对其所有临边执行松弛操作.
 

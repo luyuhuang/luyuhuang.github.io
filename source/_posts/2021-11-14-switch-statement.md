@@ -1,6 +1,7 @@
 ---
 key: 59
 title: Switch 语句的语义
+math: true
 tag: c/c++
 aside: false
 ---

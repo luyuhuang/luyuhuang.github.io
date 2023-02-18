@@ -1,6 +1,7 @@
 ---
 key: 14
 title: RSA算法背后的数学原理
+math: true
 tag:
     - math
     - featured
@@ -38,8 +39,10 @@ $a\equiv b\pmod m$ 和 $a\bmod m = b$ 很相似. 事实上, 如果 $a\bmod m = b
 **定理 3** 如果 m 是正整数, a, b 是整数, 则有
 
 $$
-(a+b)\bmod m=((a\bmod m)+(b\bmod m))\bmod m \\
-ab\bmod m=(a\bmod m)(b\bmod m)\bmod m
+\begin{align}
+(a+b)\bmod m &= ((a\bmod m)+(b\bmod m))\bmod m \\
+ab\bmod m &= (a\bmod m)(b\bmod m)\bmod m
+\end{align}
 $$
 
 根据定理3, 可得以下推论
@@ -173,9 +176,11 @@ $x\equiv \bar ab\pmod m$ 就是方程的解. 注意同余方程会有无数个�
 **解** 调用 `gcd(34, 89)`, 得 $\gcd(34, 89)=1=13\cdot 89-34\cdot 34$ , 34 模 89 的逆为 -34. 方程两边同时乘 -34 得
 
 $$
--34\cdot 34x\equiv -34\cdot 77\pmod{89} \\
-x\equiv -34\cdot 77\pmod{89} \\
-x\equiv -2618\equiv 52\pmod{89}
+\begin{align}
+-34\cdot 34x &\equiv -34\cdot 77\pmod{89} \\
+x &\equiv -34\cdot 77\pmod{89} \\
+x &\equiv -2618\equiv 52\pmod{89}
+\end{align}
 $$
 
 ## 5. 中国余数定理
@@ -269,22 +274,26 @@ $$(b+1)^p\equiv \binom{p}{p}b^p + \binom{p}{0}b^0 \equiv b^p+1 \pmod p$$
 通过不断地令 $b=b-1$ , 可得
 
 $$
-(b+1)^p\equiv b^p+1 \pmod p \\
-b^p\equiv (b-1)^p+1 \pmod p \\
-(b-1)^p\equiv (b-2)^p+1 \pmod p \\
-(b-2)^p\equiv (b-3)^p+1 \pmod p \\
+\begin{align}
+(b+1)^p &\equiv b^p+1 &\pmod p \\
+b^p &\equiv (b-1)^p+1 &\pmod p \\
+(b-1)^p &\equiv (b-2)^p+1 &\pmod p \\
+(b-2)^p &\equiv (b-3)^p+1 &\pmod p \\
 ...
+\end{align}
 $$
 
 依次代入, 得
 
 $$
-(b+1)^p\equiv b^p+1 \pmod p \\
-\equiv (b-1)^p+2 \pmod p \\
-\equiv (b-2)^p+3 \pmod p \\
-\equiv (b-3)^p+4 \pmod p \\
-... \\
-\equiv b+1 \pmod p
+\begin{align}
+(b+1)^p &\equiv b^p+1 &\pmod p \\
+        &\equiv (b-1)^p+2 &\pmod p \\
+        &\equiv (b-2)^p+3 &\pmod p \\
+        &\equiv (b-3)^p+4 &\pmod p \\
+        ... \\
+        &\equiv b+1 &\pmod p
+\end{align}
 $$
 
 令 $a=b+1$, 即得 $a^p\equiv a\pmod p$.
@@ -338,7 +347,7 @@ $$ M^{ed}\equiv M\pmod n \tag{1}$$
 
 所以 RSA 加密算法是有效的. $\blacksquare$
 
-(1) 式表明, 不仅可以用公钥加密, 私钥解密, 还可以用私钥加密, 公钥解密. 即加密计算 $C=M^d\bmod n$, 解密计算 $M=C^e\bmod n$.
+\(1) 式表明, 不仅可以用公钥加密, 私钥解密, 还可以用私钥加密, 公钥解密. 即加密计算 $C=M^d\bmod n$, 解密计算 $M=C^e\bmod n$.
 
 RSA 算法的安全性基于大整数的质因数分解的困难性. 由于目前没有能在多项式时间内对整数作质因数分解的算法, 因此无法在可行的时间内把 n 分解成 p 和 q 的乘积. 因此就无法求得 e 模 $(p-1)(q-1)$ 的逆, 也就无法根据公钥计算出私钥.
 

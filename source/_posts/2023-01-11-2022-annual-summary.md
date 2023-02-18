@@ -54,7 +54,7 @@ memorizing words and practicing listening and speaking. I insist on memorizing
 words every day this year and until now, I've used Baicizhan to insist on memorizing
 words for 1709 days.
 
-![English](/assets/images/2022-annual-summary_3.jpg){:width="650"}
+![English](/assets/images/2022-annual-summary_3.jpg){width="650"}
 
 I also spent lots of time on Open Language to practice listening and speaking. It
 helped a lot at the beginning, but now I feel it doesn't help much. I think I've hit
@@ -63,7 +63,7 @@ the English learning plateau.
 In addition to English learning, I've been learning Japanese on Duolingo. I didn't
 spend much time on that, basically two units a day. It's just for fun.
 
-![duolingo](/assets/images/2022-annual-summary_4.jpg){:width="400"}
+![duolingo](/assets/images/2022-annual-summary_4.jpg){width="400"}
 
 ### Creating
 
@@ -80,7 +80,7 @@ initial version. I just had some sporadic commit records on Github.
 The happiest thing is that I've had a good time with the people I love. Thanks for her
 company to make me no longer feel lonely.
 
-![flowers](/assets/images/2022-annual-summary_6.jpg){:width="600"}
+![flowers](/assets/images/2022-annual-summary_6.jpg){width="600"}
 
 ### Finally
 
@@ -92,7 +92,7 @@ age. I love what it said at the ending:
 > a chicken and roast it, and then it's done. If you want it to be delicious, the secret
 > is to cook it better.
 
-![mcdull](/assets/images/2022-annual-summary_7.png){:width="700"}
+![mcdull](/assets/images/2022-annual-summary_7.png){width="700"}
 
 Well, life might be a simple process from birth to death. It's simple, but it also can be
 complicated if you want. If you want it to be beautiful, the secret is to be positive and

@@ -43,7 +43,7 @@ Today is January 1, 2020, it's time to make a summary.
 
 I kept remembering words every day and completed daily plan every day except June 22 due to too busy that day to finish the plan before 00:00.
 
-![baicizhan](/assets/images/2019-annual-summary_1.jpg){:width="400"}
+![baicizhan](/assets/images/2019-annual-summary_1.jpg){width="400"}
 
 I have been remembering words for 605 days. I'm not good at language learning and I used to hate English. Nevertheless, for programmers, English is essential and it's a basic skill. I have overcome many difficulties and now I can read English articles more easily. In the future I hope I can hold on and improve writing and speaking skills.
 

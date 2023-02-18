@@ -1,6 +1,7 @@
 ---
 key: 10
 title: 编辑距离
+math: true
 tag:
     - algorithms
     - leetcode
@@ -65,7 +66,7 @@ for j in xrange(n + 1):
 
 **第二步:安排迭代顺序**. 我们发现, `dp[i][j]` 依赖于 `dp[i-1][j]`, `dp[i][j-1]` 和 `dp[i-1][j-1]`. 如图所示:
 
-![iter](/assets/images/edit-distance_1.png){:width="300"}
+![iter](/assets/images/edit-distance_1.png){width="300"}
 
 图中红色箭头代表依赖. 所以, 很简单, 逐行遍历即可. 所以代码是这样的:
 

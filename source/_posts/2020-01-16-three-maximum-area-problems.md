@@ -1,6 +1,7 @@
 ---
 key: 23
 title: 三个思路相通的最大面积问题
+math: true
 tag:
     - algorithms
     - leetcode
@@ -213,7 +214,7 @@ def largest_rectangle_in_histogram(heights):
 
 这道题的关键就是搞清楚它跟上一题 柱状图中最大的矩形 是一样的. 我们一行行来看, 就会发现这道题其实是在求 n 个柱状图中的最大矩形.
 
-![maximal-rectangle](/assets/images/three-maximum-area-problems_4.png){:width="500"}
+![maximal-rectangle](/assets/images/three-maximum-area-problems_4.png){width="500"}
 
 能想明白这一点, 这个问题就很好解了.
 
@@ -233,11 +234,11 @@ for i in range(rows):
 
 对于 `left_min` 和 `right_min` 来说, 如果这一行全为 1, 则它们都与上一行相同.
 
-![maximal-rectangle](/assets/images/three-maximum-area-problems_5.png){:width="500"}
+![maximal-rectangle](/assets/images/three-maximum-area-problems_5.png){width="500"}
 
 若这一行的第 `j` 列出现了 0, 那么必然有 `heights[j] = 0`. 也就是说这个 0 的出现导致位置 `j` 上的柱子高度降为了0.
 
-![maximal-rectangle](/assets/images/three-maximum-area-problems_6.png){:width="500"}
+![maximal-rectangle](/assets/images/three-maximum-area-problems_6.png){width="500"}
 
 这必然会影响 `left_min` 和 `right_min` 的值. 如何更新它们呢? 以 `left_min` 为例, 我们可以从左往右扫描, 遇到 0 便位置记录下来. 之后若发现有第 `j` 列的 `left_min[j]` 在上一次出现 0 的位置的左边, 就更新 `left_min[j]`. `right_min` 同理. 最后再求最大面积.
 
