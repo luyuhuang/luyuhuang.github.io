@@ -6,7 +6,6 @@ tag:
   - translations
   - featured
 ---
-{% raw %}
 > 本文由 Luyu Huang 翻译, 原文地址 [https://jekyllrb.com/docs/step-by-step/01-setup/](https://jekyllrb.com/docs/step-by-step/01-setup/). 欢迎提 [issue](https://github.com/luyuhuang/luyuhuang.github.io/issues) 来帮助我改进翻译
 
 ## 1. 配置
@@ -862,4 +861,3 @@ JEKYLL_ENV=production bundle exec jekyll build
 - 通过参与[贡献](https://jekyllrb.com/docs/contributing/)帮助 Jekyll 做得更好
 - 坚持建设 Jekyll 网站!
 
-{% endraw %}

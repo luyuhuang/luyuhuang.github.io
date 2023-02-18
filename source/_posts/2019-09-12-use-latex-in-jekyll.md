@@ -39,9 +39,9 @@ tag: tools
         <meta charset="utf-8">
         ...
 
-        {% raw %}{% unless page.no_latex %}
+        {% unless page.no_latex %}
             {% include latex.html %}
-        {% endunless %}{% endraw %}
+        {% endunless %}
     </head>
     ```
 

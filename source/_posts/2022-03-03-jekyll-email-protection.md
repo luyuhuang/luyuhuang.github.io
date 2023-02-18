@@ -40,11 +40,9 @@ Liquid::Template.register_filter(Jekyll::CustomFilters)
 
 It uses the same way as Cloudflare to encode the email and place a '#' at the beginning the make it an anchor link. So we can use it like the following:
 
-{% raw %}
 ```html
 <a class="encoded-email" href="{{ site.author.email | email_encode }}" target="_blank">send me an email!</a>
 ```
-{% endraw %}
 
 And Jekyll would generate such results:
 
