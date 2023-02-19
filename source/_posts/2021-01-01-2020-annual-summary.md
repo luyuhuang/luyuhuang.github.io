@@ -2,6 +2,7 @@
 key: 46
 title: 2020 Annual Summary
 tag: [essays, english]
+banner_img: /assets/images/2020-annual-summary_5.jpg
 ---
 
 At the beginning of 2020, no one anticipated that we would face an unprecedented pandemic that would last a year or more. 2020 is unusual, to me, pandemic, new job, working, challenges, learning, vocabularies, and algorithms are key words of 2020. Time flies and everything will pass, we all hope that tomorrow will be better. For the summary of the past year, I write down these words on the first day of 2021.

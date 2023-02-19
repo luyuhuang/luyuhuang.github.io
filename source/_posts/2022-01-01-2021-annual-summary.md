@@ -2,6 +2,7 @@
 key: 62
 title: 2021 Annual Summary
 tag: [essays, english]
+banner_img: /assets/images/2021-annual-summary_4.jpg
 ---
 I didn't really do so many things in 2021 compared to last year, but at least I kept some good habits like learning English and doing LeetCode. The most important thing this year was I joined a big company, which was a major goal in the past few years. That means I left Beijing, a city I lived in for nearly 4 years since I graduated.
 

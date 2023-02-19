@@ -2,6 +2,7 @@
 key: 71
 title: 2022 Annual Summary
 tag: [essays, english]
+banner_img: /assets/images/2022-annual-summary_6.jpg
 ---
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1906027731&auto=1&height=66"></iframe>
