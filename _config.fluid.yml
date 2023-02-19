@@ -18,7 +18,7 @@
 
 # 用于浏览器标签的图标
 # Icon for browser tab
-favicon: /img/favicon-16x16.png
+favicon: /img/favicon-32x32.png
 
 # 用于苹果设备的图标
 # Icon for Apple touch
@@ -834,6 +834,7 @@ about:
   # More icons can be found from https://hexo.fluid-dev.com/docs/en/icon/  `class` is the css class of the icon. If adding `qrcode`, The icon is no longer a link, but a hovering QR code
   icons:
     - { class: "iconfont icon-github-fill", link: "https://github.com/luyuhuang", tip: "GitHub" }
+    - { class: "iconfont icon-leetcode", link: "https://leetcode.cn/u/meng-fu-qiao", tip: "LeetCode" }
     - { class: "iconfont icon-mail", link: "mailto:luyu_haung@foxmail.com", tip: "Mail" }
     - { class: "iconfont icon-rss", link: "/feed.xml", tip: "RSS" }
 
@@ -896,7 +897,7 @@ links:
 
   # 当成员头像加载失败时，替换为指定图片
   # When the member avatar fails to load, replace the specified image
-  onerror_avatar: /img/avatar.png
+  onerror_avatar: /img/default-avatar.png
 
   # 友链下方自定义区域，支持 HTML，可插入例如申请友链的文字
   # Custom content at the bottom of the links

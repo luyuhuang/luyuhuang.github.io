@@ -31,6 +31,8 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
+  - google1c9d1155cc80282c.html
+  - robots.txt
 
 # Writing
 new_post_name: :year-:month-:day-:title.md # File name of new posts
