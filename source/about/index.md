@@ -1,6 +1,7 @@
 ---
 title: About
 layout: about
+lazyload: false
 ---
 Hi there, My name is Luyu Huang. I graduated from Jiangxi Normal University in 2017, majoring in Software Engineering. Now I'm a back-end programmer for game development. I mainly use Lua and C++, but I also use many other languages such as Python, Go, JavaScript, etc. I like video games, anime, playing the piano, and drawing. Moreover, I like programming, even though it's a part of my job.
 
