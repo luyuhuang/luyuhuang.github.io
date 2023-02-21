@@ -74,7 +74,7 @@ archive_generator:
 sitemap:
   path:
     - sitemap.xml
-  rel: true
+  rel: false
   tags: false
   categories: false
 
@@ -119,6 +119,7 @@ deploy:
 
 feed:
   enable: true
+  autodiscovery: false
   type: atom
   path: feed.xml
   limit: 10
