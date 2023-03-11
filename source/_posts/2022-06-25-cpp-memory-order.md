@@ -625,7 +625,7 @@ public:
 
 总结一下这几种内存顺序模型:
 
-- `memory_order_release`: 最宽松的内存顺序, 只保证操作的**原子性**和**修改顺序 (modification order)**.
+- `memory_order_relaxed`: 最宽松的内存顺序, 只保证操作的**原子性**和**修改顺序 (modification order)**.
 - `memory_order_acquire`, `memory_order_release` 和 `memory_order_acq_rel`: 实现 **acquire 操作**和 **release 操作**, 如果 acquire 操作读到了 release 操作写入的值, 或其 release sequence 写入的值, 则构成 **synchronizes-with 关系**, 进而可以推导出 **happens-before 的关系**.
 - `memory_order_consume`: 实现 **consume 操作**, 能实现数据依赖相关的同步关系. 如果 consume 操作读到了 release 操作写入的值, 或其 release sequence 写入的值, 则构成 **dependency-ordered before 的关系**, 对于有数据依赖的操作可以进而推导出 **happens-before 的关系**.
 - `memory_order_seq_cst`: 加强版的 acquire-release 模型, 除了可以实现 **synchronizes-with 关系**, 还保证**全局顺序一致**.
