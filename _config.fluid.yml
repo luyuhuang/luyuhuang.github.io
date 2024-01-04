@@ -792,7 +792,7 @@ about:
   icons:
     - { class: "iconfont icon-github-fill", link: "https://github.com/luyuhuang", tip: "GitHub" }
     - { class: "iconfont icon-leetcode", link: "https://leetcode.cn/u/meng-fu-qiao", tip: "LeetCode" }
-    - { class: "iconfont icon-mail", link: "mailto:luyu_haung@foxmail.com", tip: "Mail" }
+    - { class: "iconfont icon-mail", link: "mailto:luyu_huang@foxmail.com", tip: "Mail" }
     - { class: "iconfont icon-rss", link: "/feed.xml", tip: "RSS" }
 
 
