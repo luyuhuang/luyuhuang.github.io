@@ -3,7 +3,7 @@ title: About
 layout: about
 lazyload: false
 ---
-Hi there, My name is Luyu Huang. I graduated from Jiangxi Normal University in 2017, majoring in Software Engineering. Now I'm a back-end programmer for game development. I mainly use Lua and C++, but I also use many other languages such as Python, Go, JavaScript, etc. I like video games, anime, playing the piano, and drawing. Moreover, I like programming, even though it's a part of my job.
+Hi there, my name is Luyu Huang. I'm a back-end programmer for game development. I have been working in the Chinese game industry since I graduated from my university in 2017. I worked at Tencent IEG and Perfect World. I mainly use C++ and Lua, but I also use many other languages such as Go, Python, JavaScript, etc. I like video games, anime, playing the piano, and drawing. Moreover, I like programming, even though it's a part of my job.
 
 Here's my blog, mainly about programming technology. I'll write posts about programming, algorithms, mathematics, etc as a summary of my learning and work experience. If you found they're helpful, feel free to let me know and I'll be happy; if you find a mistake in my posts, I would appreciate it if you point it out.
 
