@@ -247,10 +247,11 @@ web_analytics:  # 网页访问统计
   # See: https://www.w3.org/TR/tracking-dnt/
   follow_dnt: true
 
-  # Google 统计的 Tracking ID
-  # Google analytics, set Tracking ID
-  # See: https://developers.google.com/analytics/devguides/collection/analyticsjs
-  google: UA-160051144-1
+  # Google Analytics 4 的媒体资源 ID
+  # Google Analytics 4 MEASUREMENT_ID
+  # See: https://support.google.com/analytics/answer/9744165#zippy=%2Cin-this-article
+  google:
+    measurement_id: G-Z62YPTLHNX
 
 # 对页面中的图片和评论插件进行懒加载处理，可见范围外的元素不会提前加载
 # Lazy loading of images and comment plugin on the page
