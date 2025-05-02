@@ -123,6 +123,8 @@ feed:
   type: atom
   path: feed.xml
   limit: 10
+  template:
+    - source/_feed.xml
 
 pandoc:
   extra:
