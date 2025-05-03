@@ -81,8 +81,8 @@ This file is in BETA. Please test and contribute to the discussion:
       <body class="bg-white">
         <nav class="container-md px-3 py-2 mt-2 mt-md-5 markdown-body">
           <div class="bg-yellow-light ml-n1 px-1 py-1 mb-1">
-            <p class="mb-1"><strong>This is a web feed,</strong> also known as an RSS feed. <strong>Subscribe</strong> by <a href="" onclick="navigator.clipboard.writeText(document.URL)">copying the URL</a> from the address bar into your newsreader.</p>
-            <p>这是一个<strong>网络订阅源</strong>，或者说 RSS 订阅源。<a href="" onclick="navigator.clipboard.writeText(document.URL)">复制</a>这个 URL 到你的 RSS 阅读器即可<strong>订阅</strong>本站。</p>
+            <p class="mb-1"><strong>This is a web feed,</strong> also known as an RSS feed. <strong>Subscribe</strong> by <a href="javascript:void(0);" onclick="navigator.clipboard.writeText(document.URL)">copying the URL</a> from the address bar into your newsreader.</p>
+            <p>这是一个<strong>网络订阅源</strong>，或者说 RSS 订阅源。<a href="javascript:void(0);" onclick="navigator.clipboard.writeText(document.URL)">复制</a>这个 URL 到你的 RSS 阅读器即可<strong>订阅</strong>本站。</p>
           </div>
           <p class="text-gray">
             Visit <a target="_blank" href="https://aboutfeeds.com">About Feeds</a> to get started with newsreaders and subscribing. It’s free.
