@@ -5,9 +5,8 @@
   {% if icon %}<icon>{{ icon }}</icon>{% endif %}
   {% if config.subtitle %}<subtitle>{{ config.subtitle }}</subtitle>{% endif %}
   <link href="{{ feed_url | uriencode }}" rel="self"/>
-  {% if config.feed.hub %}<link href="{{ config.feed.hub | uriencode }}" rel="hub"/>{% endif %}
   <link href="{{ url | uriencode }}"/>
-  <updated>{% if posts.first().updated %}{{ posts.first().updated.toISOString() }}{% else %}{{ posts.first().date.toISOString() }}{% endif %}</updated>
+  <updated>{% if posts[0].updated %}{{ posts[0].updated.toISOString() }}{% else %}{{ posts[0].date.toISOString() }}{% endif %}</updated>
   <id>{{ url | uriencode }}</id>
   {% if config.author %}
   <author>
@@ -16,34 +15,18 @@
   </author>
   {% endif %}
   <generator uri="https://hexo.io/">Hexo</generator>
-  {% for post in posts.toArray() %}
+  {% for post in posts %}
   <entry>
     <title>{{ post.title }}</title>
     <link href="{{ post.permalink | uriencode }}"/>
     <id>{{ post.permalink | uriencode }}</id>
     <published>{{ post.date.toISOString() }}</published>
     <updated>{% if post.updated %}{{ post.updated.toISOString() }}{% else %}{{ post.date.toISOString() }}{% endif %}</updated>
-    {% if config.feed.content and post.content %}
-    <content type="html"><![CDATA[{{ post.content | noControlChars | safe }}]]></content>
+    {% if post.content %}
+    <content type="html"><![CDATA[{{ post.content | safe }}]]></content>
     {% endif %}
-    {% if post.description %}
-    <summary type="html">{{ post.description }}</summary>
-    {% elif post.intro %}
-    <summary type="html">{{ post.intro }}</summary>
-    {% elif post.excerpt %}
-    <summary type="html">{{ post.excerpt }}</summary>
-    {% elif post.content %}
-      {% set short_content = post.content.substring(0, config.feed.content_limit) %}
-      {% if config.feed.content_limit_delim %}
-        {% set delim_pos = short_content.lastIndexOf(config.feed.content_limit_delim) %}
-        {% if delim_pos > -1 %}
-    <summary type="html">{{ short_content.substring(0, delim_pos) }}</summary>
-        {% else %}
-    <summary type="html">{{ short_content }}</summary>
-        {% endif %}
-      {% else %}
-    <summary type="html">{{ short_content }}</summary>
-      {% endif %}
+    {% if post.content %}
+    <summary type="html">{{ post.content.substring(0, 140) }}</summary>
     {% endif %}
     {% if post.image %}
     <content src="{{ post.image | formatUrl }}" type="image"/>

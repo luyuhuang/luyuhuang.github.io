@@ -117,15 +117,6 @@ theme: fluid
 deploy:
   type: ''
 
-feed:
-  enable: true
-  autodiscovery: false
-  type: atom
-  path: feed.xml
-  limit: 10
-  template:
-    - source/_feed.xml
-
 pandoc:
   extra:
     - from: markdown

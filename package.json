@@ -15,7 +15,6 @@
     "hexo": "^6.3.0",
     "hexo-clean-css": "^2.0.0",
     "hexo-generator-archive": "^2.0.0",
-    "hexo-generator-feed": "^3.0.0",
     "hexo-generator-index": "^3.0.0",
     "hexo-generator-sitemap": "^3.0.1",
     "hexo-generator-tag": "^2.0.0",
@@ -25,6 +24,7 @@
     "hexo-renderer-stylus": "^2.1.0",
     "hexo-server": "^3.0.0",
     "hexo-theme-fluid": "git+https://github.com/luyuhuang/hexo-theme-fluid.git#random-slogan",
-    "hexo-uglify": "^2.0.0"
+    "hexo-uglify": "^2.0.0",
+    "nunjucks": "^3.2.4"
   }
 }
