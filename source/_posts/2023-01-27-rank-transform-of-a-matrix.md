@@ -1,7 +1,7 @@
 ---
 key: 72
 title: 图论巧解复杂依赖问题
-math: true
+mathjax: true
 tags: [leetcode, algorithms]
 aside: false
 ---

@@ -1,7 +1,7 @@
 ---
 key: 10
 title: 编辑距离
-math: true
+mathjax: true
 tag:
     - algorithms
     - leetcode

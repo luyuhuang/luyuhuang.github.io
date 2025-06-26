@@ -121,3 +121,5 @@ pandoc:
   extra:
     - from: markdown
 
+html_minifier:
+  conservativeCollapse: true

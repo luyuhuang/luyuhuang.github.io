@@ -1,7 +1,7 @@
 ---
 key: 39
 title: 全排列问题
-math: true
+mathjax: true
 tag: [algorithms, leetcode]
 ---
 给定 n 个不同的元素, 问有多少种不同的排列方式. 这就是全排列问题. 我们高中时就学过排列公式 $A_n^m = \frac{n!}{(n-m)!}$, 因此对于 n 个元素, 全排列数等于 $A_n^n = \frac{n!}{(n-n)!} = n!$ . 例如对于序列 `[1, 2, 3]` 全排列为

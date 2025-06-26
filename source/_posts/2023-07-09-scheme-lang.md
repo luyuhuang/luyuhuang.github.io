@@ -1,7 +1,7 @@
 ---
 key: 75
 title: Scheme 语言
-math: true
+mathjax: true
 tags: [comupter-science, featured]
 ---
 我最近在读 *SICP (Structure and Interpretation of Computer Programs)*，中文译名是《计算机程序的构造与解释》，感觉受益匪浅。我打算开个坑，总结分享一些我学到的内容。*SICP* 综合性非常强，内容包括函数式编程、数据结构的分层与抽象、面向对象、无限流、元循环解释器、惰性求值、非确定性编程、逻辑编程、汇编语言与机器、编译原理等等。我只能选取一个主题抛砖引玉，这个系列文章的主题是 continuation，主要内容可能包括：

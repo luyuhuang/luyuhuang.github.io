@@ -1,7 +1,7 @@
 ---
 key: 9
 title: 详解寻路算法(1)-图搜索
-math: true
+mathjax: true
 tag:
     - algorithms
     - featured

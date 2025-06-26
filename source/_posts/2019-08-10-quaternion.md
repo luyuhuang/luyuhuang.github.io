@@ -1,7 +1,7 @@
 ---
 key: 3
 title: 四元数描述旋转
-math: true
+mathjax: true
 tag: math
 ---
 **先看结论:**

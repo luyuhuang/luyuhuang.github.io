@@ -1,7 +1,7 @@
 ---
 key: 36
 title: "Y-Combinator: 如何在匿名函数中递归调用自身"
-math: true
+mathjax: true
 tag: math
 ---
 如何实现一个阶乘函数? 最简单的做法是使用递归:

@@ -1,7 +1,7 @@
 ---
 key: 14
 title: RSA算法背后的数学原理
-math: true
+mathjax: true
 tag:
     - math
     - featured

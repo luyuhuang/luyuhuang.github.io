@@ -1,7 +1,7 @@
 ---
 key: 23
 title: 三个思路相通的最大面积问题
-math: true
+mathjax: true
 tag:
     - algorithms
     - leetcode

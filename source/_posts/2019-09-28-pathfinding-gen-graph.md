@@ -1,7 +1,7 @@
 ---
 key: 11
 title: 详解寻路算法(2)-生成图
-math: true
+mathjax: true
 tag:
     - algorithms
     - featured

@@ -1,7 +1,7 @@
 ---
 key: 53
 title: Jump Consistent Hash 算法
-math: true
+mathjax: true
 tag: algorithms
 ---
 
