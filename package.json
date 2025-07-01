@@ -26,6 +26,7 @@
     "hexo-server": "^3.0.0",
     "hexo-theme-fluid": "git+https://github.com/luyuhuang/hexo-theme-fluid.git#random-slogan",
     "hexo-uglify": "^2.0.0",
+    "node-html-parser": "^7.0.1",
     "nunjucks": "^3.2.4"
   }
 }

@@ -25,7 +25,9 @@
     {% if post.content %}
     <content type="html"><![CDATA[{{ post.content | safe }}]]></content>
     {% endif %}
-    {% if post.content %}
+    {% if post.summary %}
+    <summary type="html">{{ post.summary }}</summary>
+    {% elseif post.content %}
     <summary type="html">{{ post.content.substring(0, 140) }}</summary>
     {% endif %}
     {% if post.image %}
