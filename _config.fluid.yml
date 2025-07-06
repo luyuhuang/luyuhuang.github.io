@@ -938,3 +938,7 @@ static_prefix:
   twikoo: https://lib.baomitu.com/twikoo/1.6.8/
 
   hint: https://lib.baomitu.com/hint.css/2.7.0/
+
+custom_head: |
+  <link rel="alternate" href="/feed.xml" title="Luyu Huang's Blog" type="application/atom+xml">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
