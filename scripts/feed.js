@@ -3,7 +3,7 @@ const { readFileSync } = require('fs');
 const { encodeURL, full_url_for } = require('hexo-util');
 const { parse } = require('node-html-parser');
 
-hexo.extend.generator.register('feed', async locals => {
+hexo.extend.generator.register('feed', locals => {
     const posts = locals.posts.filter(post => post.draft !== true).sort('-date').limit(10).map(post => {
         const root = parse(post.content);
         root.querySelectorAll('figure.highlight').forEach(elem => {
